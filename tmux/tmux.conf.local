@@ -1,0 +1,22 @@
+# source default local configuration
+source -q ~/.tmux/.tmux.conf.local
+
+# start with mouse mode enabled
+set -g mouse on
+
+# force Vi mode
+# really you should export VISUAL or EDITOR environment variable, see manual
+set -g status-keys vi
+set -g mode-keys vi
+
+# -- user plugins -------------------------------------------------------
+
+# List of plugins
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'tmux-plugins/tmux-yank'
+
+# tmux-resurrect
+bind C-s run-shell -b ~/.tmux/plugins/tmux-resurrect/scripts/save.sh
+bind C-r run-shell -b ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh
+

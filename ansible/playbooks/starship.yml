@@ -1,0 +1,15 @@
+---
+- name: Configure starship
+  hosts: localhost
+
+  tasks:
+    - name: Install starship
+      ansible.builtin.command:
+        cmd: 'curl -sS https://starship.rs/install.sh | sh -s -- -f'
+
+    - name: Link starship.toml
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../starship/starship.toml'
+        dest: '{{ ansible_env.HOME }}/.config/starship.toml'
+        state: link
+        force: true

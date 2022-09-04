@@ -1,0 +1,40 @@
+---
+- name: Configure nvim
+  hosts: localhost
+
+  tasks:
+    - name: MacOS => install neovim
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: neovim
+
+    - name: Create nvim config directory
+      ansible.builtin.file:
+        path: '{{ ansible_env.HOME }}/.config/nvim'
+        state: directory
+        mode: 0644
+
+    - name: Link .vimrc
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../nvim/vimrc'
+        dest: '{{ ansible_env.HOME }}/.vimrc'
+        state: link
+        force: true
+
+    - name: Link init.vim
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../nvim/init.vim'
+        dest: '{{ ansible_env.HOME }}/.config/nvim/init.vim'
+        state: link
+        force: true
+
+    - name: Link coc-settings.json
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../nvim/coc-settings.json'
+        dest: '{{ ansible_env.HOME }}/.config/nvim/coc-settings.json'
+        state: link
+        force: true
+
+    - name: Install pynvim (support `pyx` command)
+      ansible.builtin.pip:
+        name: pynvim

@@ -1,0 +1,15 @@
+---
+- name: Configure ansible
+  hosts: localhost
+
+  tasks:
+    - name: Link .ansible.cfg
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../ansible.cfg'
+        dest: '{{ ansible_env.HOME }}/.ansible.cfg'
+        state: link
+
+    - name: Install ansible-lint
+      ansible.builtin.pip:
+        name:
+          - ansible-lint

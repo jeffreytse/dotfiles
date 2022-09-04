@@ -1,0 +1,10 @@
+---
+- name: Preflight
+  hosts: localhost
+
+  tasks:
+    - name: MacOS => homebrew upgrade all
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        update_homebrew: true
+        upgrade_all: true

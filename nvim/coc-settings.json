@@ -1,0 +1,14 @@
+{
+  "coc.source.ultisnips.priority": 10,
+  "coc.source.buffer.priority": 5,
+  "coc.source.word.priority": 1,
+  "codeLens.enable": true,
+  "explorer.file.column.icon.enableNerdfont": true,
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,
+  "java.home": "~/.asdf/installs/java/openjdk-11.0.2",
+  "java.format.enabled": true,
+  "java.import.maven.enabled": true,
+  "java.maven.downloadSources": true,
+  "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:/usr/local/share/lombok/lombok-1.18.24.jar"
+}

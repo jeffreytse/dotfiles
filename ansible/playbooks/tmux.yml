@@ -1,0 +1,35 @@
+---
+- name: Configure tmux
+  hosts: localhost
+
+  vars:
+    tmux_home: '{{ ansible_env.HOME }}/.tmux'
+
+  tasks:
+    - name: MacOS => install tmux
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: tmux
+
+    - name: Clone gpakosz/.tmux
+      ansible.builtin.git:
+        repo: https://github.com/gpakosz/.tmux.git
+        dest: '{{ tmux_home }}'
+        clone: true
+        update: true
+        force: true
+        depth: 1
+
+    - name: Link .tmux.conf
+      ansible.builtin.file:
+        src: '{{ tmux_home }}/.tmux.conf'
+        dest: '{{ ansible_env.HOME }}/.tmux.conf'
+        state: link
+        force: true
+
+    - name: Link .tmux.conf.local
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../tmux/tmux.conf.local'
+        dest: '{{ ansible_env.HOME }}/.tmux.conf.local'
+        state: link
+        force: true

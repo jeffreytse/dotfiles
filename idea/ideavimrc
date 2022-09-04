@@ -1,0 +1,141 @@
+"" Source your .vimrc
+"source ~/.vimrc
+
+"" -- Plugins --
+set NERDTree
+set surround
+set exchange
+set multiple-cursors
+set commentary
+set argtextobj
+"set easymotion
+set textobj-entire
+set highlightedyank
+set ReplaceWithRegister
+
+"" -- General Options --
+
+" Copy to system clipboard as well
+set clipboard+=unnamed
+set history=2000
+set showmode
+"set wildmenu
+set number
+set visualbell
+set noerrorbells
+
+" Use Idea to join lines smartly
+set ideajoin
+
+set ideastatusicon=gray
+set idearefactormode=keep
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=3
+
+" Do incremental searching.
+set incsearch
+set hlsearch
+set ignorecase
+set smartcase
+
+" Enable line numbers
+set nu
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+map <leader>dd <Action>(Debug)
+
+"" Map to toggle the breakpoint on the current line
+map <leader>dp <Action>(ToggleLineBreakpoint)
+
+"" Map to quick evaluate expression
+map <leader>de <Action>(QuickEvaluateExpression)
+
+" Find more examples here: https://jb.gg/share-ideavimrc
+
+let mapleader=" "
+
+map <leader>ef :NERDTreeFind<CR>
+map <leader>ee :NERDTree<CR>
+
+let g:NERDTreeMapActivateNode='l'
+let g:NERDTreeMapPreview='E'
+let g:NERDTreeMapOpenInTab='t'
+let g:NERDTreeMapOpenInTabSilent='T'
+let g:NERDTreeMapOpenSplit='s'
+let g:NERDTreeMapPreviewSplit='S'
+let g:NERDTreeMapOpenVSplit='v'
+let g:NERDTreeMapPreviewVSplit='V'
+let g:NERDTreeMapOpenRecursively='L'
+let g:NERDTreeMapCloseDir='h'
+let g:NERDTreeMapCloseChildren='H'
+let g:NERDTreeMapJumpRoot='gf'
+let g:NERDTreeMapJumpParent='gh'
+let g:NERDTreeMapJumpFirstChild='K'
+let g:NERDTreeMapJumpLastChild='J'
+let g:NERDTreeMapJumpNextSibling='j'
+let g:NERDTreeMapJumpPrevSibling='k'
+let g:NERDTreeMapRefresh='R'
+let g:NERDTreeMapRefreshRoot='gR'
+let g:NERDTreeMapMenu='<Tab>'
+let g:NERDTreeMapQuit='q'
+let g:NERDTreeMapToggleZoom='<SP>m'
+
+" Window, Buffer and Tab
+nmap <C-h> <C-w>h
+nmap <C-l> <C-w>l
+nmap <C-j> <C-w>j
+nmap <C-k> <C-w>k
+nmap <C-w>q :q<CR>
+imap <C-e> <C-o>A
+imap <C-a> <C-o>I
+
+nmap <S-h> gT
+nmap <S-l> gt
+nmap <S-Left> <Action>(com.mnw.tabmover.actions.MoveTabUpAction)
+nmap <S-Right> <Action>(com.mnw.tabmover.actions.MoveTabDownAction)
+
+" Search
+nmap <C-S-P> <Action>(SearchEverywhere)
+nmap <C-p> <Action>(GotoFile)
+nmap <leader>fg <Action>(FindInPath)
+
+" Edit
+nmap gh <Action>(MoveElementLeft)
+nmap gl <Action>(MoveElementRight)
+
+" Actions
+map <leader><CR> <Action>(ShowIntentionActions)
+
+" Completion
+imap <C-l> <Action>(CodeCompletion)
+
+" References
+nmap gr <Action>(FindUsages)
+nmap gy <Action>(GotoTypeDeclaration)
+nmap gi <Action>(GotoImplementation)
+
+" File related operations
+nmap <leader>ff <Action>(ReformatCode)
+nmap <leader>fi <Action>(OptimizeImports)
+nmap <leader>fs <Action>(SaveDocument)
+
+" Jump
+nmap [c <Action>(VcsShowPrevChangeMarker)
+nmap ]c <Action>(VcsShowNextChangeMarker)
+nmap [d <Action>(GotoPreviousError)
+nmap ]d <Action>(GotoNextError)
+
+" Refactor
+nmap <leader>rn <Action>(RenameElement)
+
+let g:argtextobj_pairs="[:],(:),<:>"

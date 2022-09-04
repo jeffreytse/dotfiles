@@ -1,0 +1,18 @@
+---
+- name: Configure git
+  hosts: localhost
+
+  tasks:
+    - name: MacOS => install git
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name:
+          - git
+          - git-flow
+
+    - name: Link .gitconfig
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../git/gitconfig'
+        dest: '{{ ansible_env.HOME }}/.gitconfig'
+        state: link
+        force: true

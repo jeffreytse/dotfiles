@@ -1,0 +1,19 @@
+[user]
+	name = Jeffrey Tse
+	email = jeffreytse.mail@gmail.com
+[credential]
+	helper = store
+[core]
+	quotepath = false
+	excludesfile = ~/.gitignore
+	ignorecase = false
+[github]
+	user = jeffreytse.mail@gmail.com
+[push]
+	default = current
+	autoSetupRemote = true
+[pull]
+	rebase = false
+	ff = yes
+[merge]
+	ff = no

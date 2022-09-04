@@ -1,0 +1,26 @@
+---
+- name: Configure asdf
+  hosts: localhost
+
+  vars:
+    asdf_home: '{{ ansible_env.HOME }}/.asdf'
+
+  tasks:
+    - name: Clone asdf
+      ansible.builtin.git:
+        repo: https://github.com/asdf-vm/asdf.git
+        dest: '{{ asdf_home }}'
+        clone: true
+        update: true
+        force: true
+        depth: 1
+
+    - name: Link .tool-versions
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../asdf/tool-versions'
+        dest: '{{ ansible_env.HOME }}/.tool-versions'
+        state: link
+        force: true
+
+    - name: Install tools listed in .tool-version
+      ansible.builtin.command: asdf install

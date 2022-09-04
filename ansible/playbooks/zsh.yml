@@ -1,0 +1,19 @@
+---
+- name: Configure zsh
+  hosts: localhost
+
+  vars:
+    zsh_plugin_dir: '{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins'
+
+  tasks:
+    - name: Install oh-my-zsh
+      ansible.builtin.shell:
+        cmd: 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+        creates: '{{ ansible_env.HOME }}/.oh-my-zsh'
+
+    - name: Link .zshrc
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../zsh/zshrc'
+        dest: '{{ ansible_env.HOME }}/.zshrc'
+        state: link
+        force: true

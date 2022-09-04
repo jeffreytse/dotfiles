@@ -1,0 +1,39 @@
+---
+- import_playbook: playbooks/preflight.yml
+  tags: [always]
+
+- import_playbook: playbooks/base.yml
+  tags: [base]
+
+- import_playbook: playbooks/ansible.yml
+  tags: [ansible]
+
+- import_playbook: playbooks/git.yml
+  tags: [git]
+
+- import_playbook: playbooks/zsh.yml
+  tags: [zsh]
+
+- import_playbook: playbooks/starship.yml
+  tags: [starship]
+
+- import_playbook: playbooks/asdf.yml
+  tags: [asdf]
+
+- import_playbook: playbooks/tmux.yml
+  tags: [tmux]
+
+- import_playbook: playbooks/nvim.yml
+  tags: [nvim]
+
+- import_playbook: playbooks/wezterm.yml
+  tags: [wezterm]
+
+- import_playbook: playbooks/mycli.yml
+  tags: [mycli]
+
+- import_playbook: playbooks/taskwarrior.yml
+  tags: [taskwarrior]
+
+- import_playbook: playbooks/idea.yml
+  tags: [idea]

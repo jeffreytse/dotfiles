@@ -1,0 +1,16 @@
+---
+- name: Configure wezterm
+  hosts: localhost
+
+  tasks:
+    - name: MacOSX => install wezterm
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: wez/wezterm/wezterm-nightly
+
+    - name: Link .wezterm.lua
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../wezterm/wezterm.lua'
+        dest: '{{ ansible_env.HOME }}/.wezterm.lua'
+        state: link
+        force: true

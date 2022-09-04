@@ -1,0 +1,50 @@
+---
+- name: Configure base
+  hosts: localhost
+
+  tasks:
+    - name: Ensure base directories
+      ansible.builtin.file:
+        path: '{{ item }}'
+        state: directory
+        mode: 0644
+      loop:
+        - '{{ ansible_env.HOME }}/.config'
+
+    - name: Tap a Homebrew repository, state present
+      community.general.homebrew_tap:
+        name: homebrew/cask-fonts         # fira code fonts
+
+    - name: MacOS => install base packages
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name:
+          - cmatrix
+          - coreutils
+          - curl
+          - docker
+          - docker-compose
+          - glow
+          - htop
+          - nginx
+          - pivoxy
+          - ripgrep
+          - tig
+
+    - name: MacOS => install homebrew casks
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name:
+          - dbeaver-community
+          - font-fira-code
+          - postman
+          - sourcetree
+          - virtualbox
+          - virtualbox-extension-pack
+          - visual-studio-code
+          - zerotier-one
+
+    - name: Install base pip packages
+      ansible.builtin.pip:
+        name:
+          - thefuck
