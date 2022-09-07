@@ -15,7 +15,7 @@
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
-data.location=/Users/xiewen425/.task
+# data.location=~/.task
 
 # To use the default location of the XDG directories,
 # move this configuration file from ~/.taskrc to ~/.config/task/taskrc and uncomment below
@@ -35,7 +35,7 @@ hooks.location=~/.config/task/hooks
 #include dark-yellow-green.theme
 #include dark-gray-256.theme
 #include dark-gray-blue-256.theme
-include solarized-dark-256.theme
+#include solarized-dark-256.theme
 #include solarized-light-256.theme
 #include no-color.theme
 
