@@ -3,7 +3,7 @@ python 3.8.13
 nodejs 16.15.0
 perl 5.30.3
 dotnet-core 5.0.402
-php 7.4.25
+php 7.4.30
 java adoptopenjdk-8.0.322+6
 maven 3.8.1
 golang 1.16
