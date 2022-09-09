@@ -5,15 +5,15 @@
   tasks:
     - name: Ensure base directories
       ansible.builtin.file:
-        path: '{{ item }}'
+        path: "{{ item }}"
         state: directory
         mode: 0644
       loop:
-        - '{{ ansible_env.HOME }}/.config'
+        - "{{ ansible_env.HOME }}/.config"
 
     - name: Tap a Homebrew repository, state present
       community.general.homebrew_tap:
-        name: homebrew/cask-fonts         # fira code fonts
+        name: homebrew/cask-fonts # fira code fonts
 
     - name: MacOS => install base packages
       when: ansible_distribution == 'MacOSX'
@@ -26,7 +26,9 @@
           - docker-compose
           - glow
           - htop
+          # - lazygit
           - nginx
+          - nnn
           - pivoxy
           - ripgrep
           - tig
