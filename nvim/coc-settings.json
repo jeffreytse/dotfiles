@@ -6,7 +6,7 @@
   "explorer.file.column.icon.enableNerdfont": true,
   "prettier.eslintIntegration": true,
   "prettier.tslintIntegration": true,
-  "java.home": "~/.asdf/installs/java/openjdk-11.0.2",
+  "java.home": "~/.asdf/installs/java/openjdk-17.0.2",
   "java.format.enabled": true,
   "java.import.maven.enabled": true,
   "java.maven.downloadSources": true,
