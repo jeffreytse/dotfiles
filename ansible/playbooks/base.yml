@@ -22,7 +22,7 @@
           - cmatrix
           - coreutils
           - curl
-          - docker
+          - docker            # docker client
           - docker-compose
           - glow
           - htop
@@ -38,6 +38,7 @@
       community.general.homebrew_cask:
         name:
           - dbeaver-community
+          - docker            # docker app
           - font-fira-code
           - postman
           - sourcetree
