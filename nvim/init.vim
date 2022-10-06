@@ -96,9 +96,6 @@ set list listchars=tab:»·,trail:·
 set splitbelow
 set splitright
 
-" Vim split bar styling
-"set fillchars+=vert:│
-
 " Folding
 set foldenable
 set foldmethod=marker   " Enable folding (shortcut za)
@@ -603,3 +600,9 @@ endif
 " Vim theme
 set background=dark
 colorscheme PaperColor
+
+" Vim split bar styling
+" set fillchars+=vert:│
+hi VertSplit guifg=darkgray guibg=none gui=none
+      \ ctermfg=darkgray ctermbg=none term=none cterm=none
+
