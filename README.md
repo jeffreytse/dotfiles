@@ -42,6 +42,12 @@ cd dotfiles && ./setup.sh
   - [Kanagawa](https://github.com/rebelot/kanagawa.nvim)
 - Font:
   - Fira Code from Nerd Fonts
+- Browser:
+  - [nnn](https://github.com/jarun/nnn)
+- Version Manager:
+  - [asdf](https://github.com/asdf-vm/asdf)
+- Others:
+  - cmatrix
 - ...
 
 
