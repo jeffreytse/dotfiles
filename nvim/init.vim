@@ -188,6 +188,7 @@ Plug 'tpope/vim-speeddating'            " Use CTRL-A/CTRL-X to increment dates, 
 Plug 'KabbAmine/vCoolor.vim'            " Simple color selector/picker plugin for Vim
 Plug 'kkoomen/vim-doge'                 " Generate proper code documentation skeletons with a single keypress
 Plug 'OrangeT/vim-csharp'               " Support for CSharp files
+Plug 'vim-test/vim-test'                " Support running tests
 
 " Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -448,6 +449,16 @@ nmap <C-p> :CocList files<cr>
 " Jump to float window, the same as `ctrl-w w`
 nmap <leader>jf <Plug>(coc-float-jump)
 
+" Navigate projects when using coc.nvim
+autocmd BufEnter * :call SetVimtestProjectRoot(expand('%:p'))
+function! SetVimtestProjectRoot(file)
+  if exists("g:WorkspaceFolders")
+    for f in g:WorkspaceFolders
+      if match(a:file, f, 0) == 0 | let g:test#project_root = f | return | endif
+    endfor
+  endif
+endfunction
+
 " Setup Prettier command
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
 
@@ -582,6 +593,13 @@ highlight BookmarkLine ctermbg=194 ctermfg=NONE
 
 " Plugin vimspector settings.
 let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+
+" Plugin vim-test
+nmap <silent> <leader>tn :TestNearest<CR>
+nmap <silent> <leader>tf :TestFile<CR>
+nmap <silent> <leader>ts :TestSuite<CR>
+nmap <silent> <leader>tl :TestLast<CR>
+nmap <silent> <leader>tv :TestVisit<CR>
 
 " syntax highlight
 syntax enable
