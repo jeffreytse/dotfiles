@@ -17,3 +17,5 @@
 	ff = yes
 [merge]
 	ff = no
+[init]
+	defaultBranch = main
