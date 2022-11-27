@@ -230,6 +230,9 @@ Plug 'jszakmeister/vim-togglecursor'
 " --- Build / Debug ---
 Plug 'puremourning/vimspector'
 
+" --- Others ---
+Plug 'ianding1/leetcode.vim'
+
 " Initialize plugin system
 call plug#end()
 
@@ -600,6 +603,10 @@ nmap <silent> <leader>tf :TestFile<CR>
 nmap <silent> <leader>ts :TestSuite<CR>
 nmap <silent> <leader>tl :TestLast<CR>
 nmap <silent> <leader>tv :TestVisit<CR>
+
+" Plugin leetcode
+let g:leetcode_browser = 'chrome'
+let g:leetcode_solution_filetype = 'java'
 
 " syntax highlight
 syntax enable
