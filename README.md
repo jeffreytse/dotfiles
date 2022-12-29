@@ -10,8 +10,16 @@
 ```
 
 All the configuration and scripts needed by myself, proper dotfiles are the
-very heart of an efficient working environment, no more, no less. All
-configurations are managed by [Ansible](https://github.com/ansible/ansible).
+very heart of an efficient working environment, no more, no less.
+
+All configurations are managed by [Ansible](https://github.com/ansible/ansible),
+it's a little more complex than [GNU Stow](https://www.gnu.org/software/stow/),
+[dotbot](https://github.com/anishathalye/dotbot), but much features rich to
+bootstrap my environment.
+
+Please NOTE that this project isn't a distro, it's intended for my personal
+usage, and perhaps some inspiration, _not complete duplication_. If you see
+something weird or wrong please raise an issue instead.
 
 ## Setup
 
@@ -35,6 +43,7 @@ cd dotfiles && ./setup.sh
 - Shell:
   - [zsh](https://www.zsh.org/)
   - [zinit](https://github.com/zdharma-continuum/zinit)
+  - [starship](https://github.com/starship/starship)
 - Editor:
   - [neovim](https://github.com/neovim/neovim)
 - Theme:
