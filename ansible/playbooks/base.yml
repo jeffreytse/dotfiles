@@ -11,9 +11,13 @@
       loop:
         - "{{ ansible_env.HOME }}/.config"
 
-    - name: Tap a Homebrew repository, state present
+    - name: Tap a Homebrew repository -> homebrew/cask-fonts
       community.general.homebrew_tap:
-        name: homebrew/cask-fonts # fira code fonts
+        name: homebrew/cask-fonts         # fira code fonts
+
+    - name: Tap a Homebrew repository -> wez/wezterm
+      community.general.homebrew_tap:
+        name: wez/wezterm                 # wezterm
 
     - name: MacOS => install base packages
       when: ansible_distribution == 'MacOSX'
@@ -30,7 +34,9 @@
           - nginx
           - nnn
           - pivoxy
-          - ripgrep
+          - ripgrep           # battle-tested alternative for grep
+          - rga               # not only features in rg, but also more
+          - git-delta         # a syntax-highlighting pager for git, diff and grep output
           - tig
 
     - name: MacOS => install homebrew casks
@@ -45,9 +51,11 @@
           - virtualbox
           - virtualbox-extension-pack
           - visual-studio-code
+          - wezterm-nightly
           - zerotier-one
 
     - name: Install base pip packages
       ansible.builtin.pip:
         name:
           - thefuck
+          - gcalcli
