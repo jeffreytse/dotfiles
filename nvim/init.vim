@@ -145,6 +145,20 @@ nnoremap <C-w>u :source ~/session.vim<cr>
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 
+" Convert unicode escape sequences (i.e. \uXXXX) to a single character
+nnoremap <silent> <leader>fnc :%s/\\u\(\x\{4\}\)/\=nr2char('0x'.submatch(1),1)/g<CR>
+" Format file to utf-8[unix] style
+nnoremap <silent> <leader>fnx :set encoding=utf-8 fileformat=unix<CR>
+" Format file to whitespaces indent style
+nnoremap <silent> <leader>fns :%!expand -t2<CR>
+" Format file to remove all trailing whitespaces
+nnoremap <silent> <leader>fnt :%s/\s\+$//e<CR>
+
+" Edit vimrc configuration file
+nnoremap <leader>ve :e $MYVIMRC<CR>
+" Reload vimrc configuration file
+nnoremap <leader>vr :source $MYVIMRC<CR>
+
 " Plugin vim-polyglot settings.
 let g:polyglot_disabled = ['markdown']
 
