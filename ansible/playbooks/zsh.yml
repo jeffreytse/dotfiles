@@ -6,6 +6,21 @@
     zsh_plugin_dir: '{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins'
 
   tasks:
+    - name: MacOS => install zsh
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: zsh
+
+    - name: Ubuntu => install zsh
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: zsh
+        state: latest
+
+    - name: Change default shell to zsh
+      ansible.builtin.shell:
+        cmd: 'chsh -s $(which zsh)'
+
     - name: Install oh-my-zsh
       ansible.builtin.shell:
         cmd: 'sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
