@@ -2,10 +2,16 @@
   hosts: localhost
 
   tasks:
-    - name: MacOS => install taskwarriror
+    - name: MacOS => install taskwarrior
       when: ansible_distribution == 'MacOSX'
       community.general.homebrew:
         name: task
+
+    - name: Ubuntu => install taskwarrior
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: taskwarrior
+        state: latest
 
     - name: Create task config directory
       ansible.builtin.file:

@@ -8,3 +8,11 @@
       community.general.homebrew:
         update_homebrew: true
         upgrade_all: true
+
+    - name: Ubuntu => apt upgrade all
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 3600   # Only One Hour
+

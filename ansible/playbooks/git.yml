@@ -3,12 +3,38 @@
   hosts: localhost
 
   tasks:
+    ###########################
+    # git
+    # A free and open source distributed version control system designed
+    # to handle everything from small to very large projects with speed
+    # and efficiency
+    ###########################
     - name: MacOS => install git
       when: ansible_distribution == 'MacOSX'
       community.general.homebrew:
-        name:
-          - git
-          - git-flow
+        name: git
+
+    - name: Ubuntu => install git
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: git
+        state: latest
+
+    ###########################
+    # git-flow
+    # An alternative Git branching model that involves the use of feature
+    # branches and multiple primary branches
+    ###########################
+    - name: MacOS => install git-flow
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: git-flow
+
+    - name: Ubuntu => install git-flow
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: git-flow
+        state: latest
 
     - name: Link .gitconfig
       ansible.builtin.file:

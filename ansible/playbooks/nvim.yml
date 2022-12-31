@@ -8,6 +8,12 @@
       community.general.homebrew:
         name: neovim
 
+    - name: Ubuntu => install neovim
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: neovim
+        state: latest
+
     - name: Create nvim config directory
       ansible.builtin.file:
         path: '{{ ansible_env.HOME }}/.config/nvim'

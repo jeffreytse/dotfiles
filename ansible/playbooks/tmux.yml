@@ -11,6 +11,12 @@
       community.general.homebrew:
         name: tmux
 
+    - name: Ubuntu => install tmux
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: tmux
+        state: latest
+
     - name: Clone gpakosz/.tmux
       ansible.builtin.git:
         repo: https://github.com/gpakosz/.tmux.git
