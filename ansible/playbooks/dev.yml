@@ -1,0 +1,128 @@
+---
+- name: Configure dev
+  hosts: localhost
+
+  tasks:
+    ###########################
+    # nginx
+    # Advanced Load Balancer, Web Server, & Reverse Proxy
+    ###########################
+    - name: MacOS => install nginx
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: nginx
+
+    - name: Ubuntu => install nginx
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: nginx
+        state: latest
+
+    ###########################
+    # tig
+    # Text-mode interface for git
+    ###########################
+    - name: MacOS => install nginx
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: tig
+
+    - name: Ubuntu => install curl
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: tig
+        state: latest
+
+    ###########################
+    # git-delta
+    # A syntax-highlighting pager for git, diff and grep output
+    ###########################
+    - name: MacOS => install nginx
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: git-delta
+
+    ###########################
+    # nnn
+    # n³ The unorthodox terminal file manager
+    ###########################
+    - name: MacOS => install nnn
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: nnn
+
+    - name: Ubuntu => install nnn
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: nnn
+        state: latest
+
+    ###########################
+    # dbeaver
+    # Free Universal Database Tool
+    ###########################
+    - name: MacOS => install dbeaver
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: dbeaver-community
+
+    - name: Ubuntu => install dbeaver
+      when: ansible_distribution == 'Ubuntu'
+      community.general.snap:
+        name: dbeaver-ce
+        channel: latest/edge
+
+    ###########################
+    # postman
+    # Free Universal Database Tool
+    ###########################
+    - name: MacOS => install postman
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: postman
+
+    - name: Ubuntu => install postman
+      when: ansible_distribution == 'Ubuntu'
+      community.general.snap:
+        name: postman
+        channel: latest/edge
+
+    ###########################
+    # vscode
+    # a code editor redefined and optimized for building and debugging
+    # modern web and cloud applications
+    ###########################
+    - name: MacOS => install vscode
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: visual-studio-code
+
+    - name: Ubuntu => install vscode
+      when: ansible_distribution == 'Ubuntu'
+      community.general.snap:
+        name: code
+        classic: yes
+
+    ###########################
+    # zerotier
+    # Securely connect any device, anywhere
+    ###########################
+    - name: MacOS => install zerotier
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: zerotier-one
+
+    - name: Ubuntu => install zerotier
+      when: ansible_distribution == 'Ubuntu'
+      community.general.snap:
+        name: zerotier
+
+    ###########################
+    # sourcetree
+    # Securely connect any device, anywhere
+    ###########################
+    - name: MacOS => install sourcetree
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: sourcetree
+

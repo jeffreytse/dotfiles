@@ -1,0 +1,21 @@
+---
+- name: Configure font fira code
+  hosts: localhost
+
+  tasks:
+    - name: Tap a Homebrew repository -> homebrew/cask-fonts
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_tap:
+        name: homebrew/cask-fonts
+
+    - name: MacOS => install font fira code
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: font-fira-code
+
+    - name: Ubuntu => install font fira code
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: fonts-firacode
+        state: latest
+

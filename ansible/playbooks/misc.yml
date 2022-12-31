@@ -1,0 +1,112 @@
+- name: Install miscellaneous softwares
+  hosts: localhost
+
+  tasks:
+    ###########################
+    # ffmpeg
+    # A free tool for manipulating media files
+    ###########################
+    - name: MacOS => install ffmpeg
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: ffmpeg
+
+    - name: Ubuntu => install ffmpeg
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: ffmpeg
+        state: latest
+
+    ###########################
+    # pandoc
+    # a universal document converter
+    ###########################
+    - name: MacOS => install pandoc
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: pandoc
+
+    - name: Ubuntu => install pandoc
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: pandoc
+        state: latest
+
+    ###########################
+    # thefuck
+    # Magnificent app which corrects your previous console command.
+    ###########################
+    - name: Install thefuck
+      ansible.builtin.pip:
+        name:
+          - thefuck
+
+    ###########################
+    # gcalcli
+    # Google Calendar Command Line Interface
+    ###########################
+    - name: Install gcalcli
+      ansible.builtin.pip:
+        name:
+          - gcalcli
+
+    ###########################
+    # neofetch
+    # 🖼️A command-line system information tool written in bash 3.2+
+    ###########################
+    - name: MacOS => install neofetch
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name:
+          - neofetch
+
+    - name: Ubuntu => install neofetch
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: neofetch
+        state: latest
+
+    ###########################
+    # glow
+    # Render markdown on the CLI, with pizzazz! 💅
+    ###########################
+    - name: Install glow
+      ansible.builtin.command: go install github.com/charmbracelet/glow@latest
+
+    ###########################
+    # vhs
+    # Your CLI home video recorder 📼
+    ###########################
+    - name: Install vhs
+      ansible.builtin.command: go install github.com/charmbracelet/vhs@latest
+
+    ###########################
+    # cmatrix
+    # Terminal based "The Matrix" like implementation
+    ###########################
+    - name: MacOS => install cmatrix
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name:
+          - cmatrix
+
+    - name: Ubuntu => install cmatrix
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: cmatrix
+        state: latest
+
+    ###########################
+    # privoxy
+    # A free non-caching web proxy
+    ###########################
+    - name: MacOS => install privoxy
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: privoxy
+
+    - name: Ubuntu => install privoxy
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: privoxy
+        state: latest

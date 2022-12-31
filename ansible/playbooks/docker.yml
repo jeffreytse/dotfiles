@@ -1,0 +1,29 @@
+---
+- name: Configure docker
+  hosts: localhost
+
+  tasks:
+    ###########################
+    # docker client
+    ###########################
+    - name: MacOS => install docker client
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: docker
+
+    ###########################
+    # docker server
+    ###########################
+    - name: MacOS => install docker server
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: docker
+
+    ###########################
+    # docker compose
+    ###########################
+    - name: MacOS => install docker compose
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: docker-compose
+

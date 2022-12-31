@@ -29,6 +29,9 @@
 - import_playbook: playbooks/wezterm.yml
   tags: [wezterm]
 
+- import_playbook: playbooks/font-fira-code.yml
+  tags: [fira-code]
+
 - import_playbook: playbooks/mycli.yml
   tags: [mycli]
 
@@ -37,3 +40,12 @@
 
 - import_playbook: playbooks/idea.yml
   tags: [idea]
+
+- import_playbook: playbooks/virtualbox.yml
+  tags: [virtualbox]
+
+- import_playbook: playbooks/dev.yml
+  tags: [dev]
+
+- import_playbook: playbooks/misc.yml
+  tags: [misc]

@@ -3,6 +3,10 @@
   hosts: localhost
 
   tasks:
+    - name: Tap a Homebrew repository -> wez/wezterm
+      community.general.homebrew_tap:
+        name: wez/wezterm
+
     - name: MacOSX => install wezterm
       when: ansible_distribution == 'MacOSX'
       community.general.homebrew_cask:

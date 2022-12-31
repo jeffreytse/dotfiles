@@ -11,51 +11,106 @@
       loop:
         - "{{ ansible_env.HOME }}/.config"
 
-    - name: Tap a Homebrew repository -> homebrew/cask-fonts
-      community.general.homebrew_tap:
-        name: homebrew/cask-fonts         # fira code fonts
-
-    - name: Tap a Homebrew repository -> wez/wezterm
-      community.general.homebrew_tap:
-        name: wez/wezterm                 # wezterm
-
-    - name: MacOS => install base packages
+    ###########################
+    # coreutils
+    # A package of GNU software containing implementations for many
+    # of the basic tools, such as cat, ls, and rm, which are used on
+    # Unix-like operating systems
+    ###########################
+    - name: MacOS => install coreutils
       when: ansible_distribution == 'MacOSX'
       community.general.homebrew:
-        name:
-          - cmatrix
-          - coreutils
-          - curl
-          - docker            # docker client
-          - docker-compose
-          - glow
-          - htop
-          # - lazygit
-          - nginx
-          - nnn
-          - pivoxy
-          - ripgrep           # battle-tested alternative for grep
-          - rga               # not only features in rg, but also more
-          - git-delta         # a syntax-highlighting pager for git, diff and grep output
-          - tig
+        name: coreutils
 
-    - name: MacOS => install homebrew casks
+    - name: Ubuntu => install coreutils
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: coreutils
+        state: latest
+
+    ###########################
+    # inetutils
+    # GNU network utilities (e.g. ftp, telnet, etc.)
+    ###########################
+    - name: MacOS => install inetutils
       when: ansible_distribution == 'MacOSX'
-      community.general.homebrew_cask:
-        name:
-          - dbeaver-community
-          - docker            # docker app
-          - font-fira-code
-          - postman
-          - sourcetree
-          - virtualbox
-          - virtualbox-extension-pack
-          - visual-studio-code
-          - wezterm-nightly
-          - zerotier-one
+      community.general.homebrew:
+        name: inetutils
 
-    - name: Install base pip packages
-      ansible.builtin.pip:
-        name:
-          - thefuck
-          - gcalcli
+    - name: Ubuntu => install inetutils
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: inetutils-tools
+        state: latest
+
+    ###########################
+    # snap
+    # The app store for Linux
+    ###########################
+    - name: Ubuntu => install snap
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: snapd
+        state: latest
+
+    ###########################
+    # curl
+    # A computer software project providing a library and command-line
+    # tool for transferring data using various network protocols
+    ###########################
+    - name: MacOS => install curl
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: curl
+
+    - name: Ubuntu => install curl
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: curl
+        state: latest
+
+    ###########################
+    # wget
+    # A GNU computer program that retrieves content from web servers
+    ###########################
+    - name: MacOS => install wget
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: wget
+
+    - name: Ubuntu => install wget
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: wget
+        state: latest
+
+    ###########################
+    # htop
+    # An interactive system-monitor process-viewer and process-manager
+    ###########################
+    - name: MacOS => install htop
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: htop
+
+    - name: Ubuntu => install htop
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: htop
+        state: latest
+
+    ###########################
+    # ripgrep
+    # A battle-tested alternative for grep
+    ###########################
+    - name: MacOS => install ripgrep
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: ripgrep
+
+    - name: Ubuntu => install ripgrep
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: ripgrep
+        state: latest
+

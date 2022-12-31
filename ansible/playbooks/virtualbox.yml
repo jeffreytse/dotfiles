@@ -1,0 +1,11 @@
+---
+- name: Install virtualbox
+  hosts: localhost
+
+  tasks:
+    - name: MacOS => install virtualbox
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name:
+          - virtualbox
+          - virtualbox-extension-pack
