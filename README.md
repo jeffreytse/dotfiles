@@ -9,6 +9,27 @@
 ╚═════╝  ╚═════╝    ╚═╝   ╚═╝     ╚═╝╚══════╝╚══════╝╚══════╝
 ```
 
+<a href="https://github.com/jeffreytse/dotfiles/actions/workflows/tests.yml">
+  <img src="https://github.com/jeffreytse/dotfiles/actions/workflows/tests.yml/badge.svg"
+    alt="build" />
+</a>
+<a href="https://opensource.org/licenses/MIT">
+  <img src="https://img.shields.io/badge/License-MIT-brightgreen.svg"
+    alt="License: MIT" />
+</a>
+<a href="https://liberapay.com/jeffreytse">
+  <img src="https://img.shields.io/liberapay/goal/jeffreytse.svg?logo=liberapay"
+    alt="Donate (Liberapay)" />
+</a>
+<a href="https://patreon.com/jeffreytse">
+  <img src="https://img.shields.io/badge/support-patreon-F96854.svg?style=flat-square"
+    alt="Donate (Patreon)" />
+</a>
+<a href="https://ko-fi.com/jeffreytse">
+  <img height="20" src="https://www.ko-fi.com/img/githubbutton_sm.svg"
+    alt="Donate (Ko-fi)" />
+</a>
+
 All the configuration and scripts needed by myself, proper dotfiles are the
 very heart of an efficient working environment, no more, no less.
 
