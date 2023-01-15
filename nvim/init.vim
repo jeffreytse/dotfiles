@@ -159,6 +159,11 @@ nnoremap <leader>ve :e $MYVIMRC<CR>
 " Reload vimrc configuration file
 nnoremap <leader>vr :source $MYVIMRC<CR>
 
+" Translator
+nnoremap <leader>tw viW:TranslateW<CR>
+vnoremap <leader>tw :TranslateW<CR>
+vnoremap <leader>tt :Translate<CR>
+
 " Plugin vim-polyglot settings.
 let g:polyglot_disabled = ['markdown']
 
@@ -246,6 +251,7 @@ Plug 'puremourning/vimspector'
 
 " --- Others ---
 Plug 'ianding1/leetcode.vim'
+Plug 'voldikss/vim-translator'
 
 " Initialize plugin system
 call plug#end()
