@@ -1,105 +1,86 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+#############################
+# Shell Options
+#############################
+
 # Initialise completions with ZSH's compinit
 autoload -Uz compinit
 compinit
 
-# Path to your oh-my-zsh installation.
-export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="re5et"
+#== History ==
+# Append history to the history file (no overwriting)
+setopt appendhistory
+# Share history across terminals
+setopt sharehistory
+# Immediately append to the history file, not just when a term is killed
+setopt incappendhistory
+# Remove superfluous blanks from each command line being added to the history
+# list
+setopt histreduceblanks
+# Remove command lines from the history list when the first character on the
+# line is a space, or when one of the expanded aliases contains a leading space
+setopt histignorespace
+# Do not enter command lines into the history list if they are duplicates of the
+# previous event.
+setopt histignorealldups
 
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+#== Directory ==
+# Switching directories for lazy people
+setopt autocd
+# See: http://zsh.sourceforge.net/Intro/intro_6.html
+setopt autopushd pushdminus pushdsilent pushdtohome pushdignoredups
+# Don't kill background jobs when I logout
+# setopt nohup
+# See: http://zsh.sourceforge.net/Intro/intro_2.html
+setopt extendedglob
+# Do not require a leading '.' in a filename to be matched explicitly
+# setopt globdots
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+#== Completion ==
+# Automatically use menu completion after the second consecutive request for
+# completion
+setopt automenu
+# If the argument to a cd command (or an implied cd with the AUTO_CD option set)
+# is not a directory, and does not begin with a slash, try to expand the
+# expression as if it were preceded by a '~'
+setopt cdablevars
+# Try to make the completion list smaller (occupying less lines) by printing
+# the matches in columns with different widths
+setopt listpacked
+# Don't show types in completion lists
+setopt nolisttypes
+# If a completion is performed with the cursor within a word, and a full
+# completion is inserted, the cursor is moved to the end of the word
+setopt alwaystoend
+# Not correct the spelling of commands
+setopt nocorrect nocorrectall
+# Disable beep
+setopt nobeep
+# Get rid of "No match found" when running commands
+# https://github.com/robbyrussell/oh-my-zsh/issues/449
+setopt no_nomatch
+# Don't ask for confirmation on rm *
+setopt rmstarsilent
+# Allow comments inside commands
+# setopt interactivecomments
+# Report the status of background jobs immediately, rather than waiting until
+# just before printing a prompt.
+setopt notify
+# Display PID when using jobs
+setopt longlistjobs
+# Perform implicit tees or cats when multiple redirections are attempted
+setopt multios
+# Use vi key bindings in ZSH
+# setopt vi
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-# plugins=(
-#   git
-#   z dircycle
-#   yarn nvm
-# )
-
-source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
+#############################
+# Zinit Plugin Manager
+#############################
 ## Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -152,6 +133,9 @@ zinit snippet OMZP::fancy-ctrl-z
 # zinit ice lucid wait
 # zinit snippet OMZP::sudo
 
+zinit ice from"gh-r" as"program"
+zinit light junegunn/fzf
+
 zinit ice lucid wait
 zinit snippet OMZP::fzf
 
@@ -187,20 +171,39 @@ zinit light jeffreytse/zsh-vi-mode
 # zinit light sindresorhus/pure
 # fpath+=$HOME/.zsh/pure
 
-# History
-HISTFILE="$HOME/.zsh_history"
-HISTSIZE=100000
-SAVEHIST=100000
-#WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-
-setopt appendhistory notify
-unsetopt beep nomatch
-# setopt auto_cd
-setopt multios
-
 ### End of Zinit's installer chunk
 
-test -e "${HOME}/.iterm3_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+#############################
+# Common Environment Vars
+#############################
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# History
+export HISTFILE=$HOME/.zsh_history
+export HISTSIZE=100000
+export SAVEHIST=100000
+#export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+# You may need to manually set your language environment
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # asdf-vm
 source $HOME/.asdf/asdf.sh
@@ -231,12 +234,13 @@ export JAVA_HOME="$(asdf where java)"
 export VISUAL="$(command -v nvim)"
 export EDITOR="$VISUAL"
 
-eval $(thefuck --alias)
-
-eval "$(starship init zsh)"
-
-# fzf
-zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
+#############################
+# Personal Alias
+#############################
+# Set personal aliases
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
 
 # Tmux commands
 alias tmux-restore='tmux attach || { (while ! tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh; do sleep 0.2; done)& tmux ; }'
@@ -244,5 +248,15 @@ alias mux=tmuxinator
 
 # Clean filesystem user watches
 alias fs-watcher-clean='echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p'
+
+#############################
+# Others
+#############################
+
+test -e "${HOME}/.iterm3_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+eval $(thefuck --alias)
+
+eval "$(starship init zsh)"
 
 # Everything else will be loaded by zshenv (autoload) as this file is loaded in a non-interactive session
