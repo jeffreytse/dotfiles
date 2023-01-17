@@ -34,6 +34,27 @@
         state: latest
 
     ###########################
+    # gitui
+    # Blazing 💥 fast terminal-ui for git written in rust 🦀
+    ###########################
+    - name: Install gitui
+      community.general.cargo:
+        name: gitui
+
+    - name: Create gitui config directory
+      ansible.builtin.file:
+        path: '{{ ansible_env.HOME }}/.config/gitui'
+        state: directory
+        mode: 0755
+
+    - name: Link key_bindings.ron for vim-like bindings
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../gitui/key_bindings.ron'
+        dest: '{{ ansible_env.HOME }}/.config/gitui/key_bindings.ron'
+        state: link
+        force: true
+
+    ###########################
     # git-delta
     # A syntax-highlighting pager for git, diff and grep output
     ###########################
