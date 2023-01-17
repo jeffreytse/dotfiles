@@ -5,12 +5,8 @@
 # Shell Options
 #############################
 
-# Initialise completions with ZSH's compinit
-autoload -Uz compinit
-compinit
-
-
 #== History ==
+#
 # Append history to the history file (no overwriting)
 setopt appendhistory
 # Share history across terminals
@@ -26,9 +22,11 @@ setopt histignorespace
 # Do not enter command lines into the history list if they are duplicates of the
 # previous event.
 setopt histignorealldups
-
+# Add a bit more data (timestamp in unix epoch time and elapsed time of the command)
+# setopt extended_history
 
 #== Directory ==
+#
 # Switching directories for lazy people
 setopt autocd
 # See: http://zsh.sourceforge.net/Intro/intro_6.html
@@ -40,8 +38,8 @@ setopt extendedglob
 # Do not require a leading '.' in a filename to be matched explicitly
 # setopt globdots
 
-
-#== Completion ==
+#== Input/Output ==
+#
 # Automatically use menu completion after the second consecutive request for
 # completion
 setopt automenu
@@ -81,6 +79,7 @@ setopt multios
 #############################
 # Zinit Plugin Manager
 #############################
+
 ## Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
@@ -129,6 +128,7 @@ zinit snippet OMZP::textmate
 zinit snippet OMZP::lighthouse
 zinit snippet OMZP::tmux
 zinit snippet OMZP::fancy-ctrl-z
+zinit snippet OMZP::common-aliases
 
 # zinit ice lucid wait
 # zinit snippet OMZP::sudo
@@ -167,12 +167,21 @@ zinit light jeffreytse/zsh-vi-mode
 
 # zinit light denysdovhan/spaceship-prompt
 
-# zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+# zinit ice pick"async.zsh" src"pure.zsh"
 # zinit light sindresorhus/pure
-# fpath+=$HOME/.zsh/pure
 
 ### End of Zinit's installer chunk
 
+#############################
+# Common Functions
+#############################
+
+# Functions Autoloading
+fpath=(~/.zsh $fpath)
+
+# Completion
+autoload -U promptinit && promptinit
+autoload -U compinit compdef && compinit
 
 #############################
 # Common Environment Vars
@@ -237,6 +246,7 @@ export EDITOR="$VISUAL"
 #############################
 # Personal Alias
 #############################
+
 # Set personal aliases
 #
 # Example aliases
@@ -245,9 +255,6 @@ export EDITOR="$VISUAL"
 # Tmux commands
 alias tmux-restore='tmux attach || { (while ! tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh; do sleep 0.2; done)& tmux ; }'
 alias mux=tmuxinator
-
-# Clean filesystem user watches
-alias fs-watcher-clean='echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p'
 
 #############################
 # Others
@@ -258,5 +265,17 @@ test -e "${HOME}/.iterm3_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 eval $(thefuck --alias)
 
 eval "$(starship init zsh)"
+
+# Clean filesystem user watches
+function fs-watcher-clean() {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        sudo sysctl -w kern.maxfiles=524288
+        sudo sysctl -w kern.maxfilesperproc=524288
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sudo sysctl -n -w fs.inotify.max_queued_events=524288
+        sudo sysctl -n -w fs.inotify.max_user_instances=512
+        sudo sysctl -n -w fs.inotify.max_user_watches=524288
+    fi
+}
 
 # Everything else will be loaded by zshenv (autoload) as this file is loaded in a non-interactive session
