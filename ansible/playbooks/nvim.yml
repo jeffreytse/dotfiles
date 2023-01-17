@@ -18,7 +18,7 @@
       ansible.builtin.file:
         path: '{{ ansible_env.HOME }}/.config/nvim'
         state: directory
-        mode: 0644
+        mode: 0755
 
     - name: Link .vimrc
       ansible.builtin.file:

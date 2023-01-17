@@ -17,7 +17,7 @@
       ansible.builtin.file:
         path: '{{ ansible_env.HOME }}/.config/task'
         state: directory
-        mode: 0644
+        mode: 0755
 
     - name: Link taskrc
       ansible.builtin.file:
