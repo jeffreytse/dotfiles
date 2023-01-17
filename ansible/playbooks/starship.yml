@@ -4,7 +4,7 @@
 
   tasks:
     - name: Install starship
-      ansible.builtin.command:
+      ansible.builtin.shell:
         cmd: 'curl -sS https://starship.rs/install.sh | sh -s -- -f'
 
     - name: Link starship.toml
