@@ -74,6 +74,25 @@
       ansible.builtin.command: go install github.com/charmbracelet/glow@latest
 
     ###########################
+    # markserv
+    # 🏁 serve markdown as html (GitHub style), index directories,
+    # live-reload as you edit
+    ###########################
+    - name: Install markserv
+      community.general.npm:
+        name: markserv
+        global: true
+
+    ###########################
+    # serve
+    # Static file serving and directory listing
+    ###########################
+    - name: Install serve
+      community.general.npm:
+        name: serve
+        global: true
+
+    ###########################
     # vhs
     # Your CLI home video recorder 📼
     ###########################
