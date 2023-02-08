@@ -32,6 +32,20 @@
         name: pandoc
         state: latest
 
+    - name: MacOS => install basictex as pandoc PDF convertor
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: basictex
+
+    ###########################
+    # calibre (ebook-convert)
+    # the calibre ebook manager
+    ###########################
+    - name: MacOS => install calibre
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: calibre
+
     ###########################
     # thefuck
     # Magnificent app which corrects your previous console command.
@@ -106,8 +120,7 @@
     - name: MacOS => install cmatrix
       when: ansible_distribution == 'MacOSX'
       community.general.homebrew:
-        name:
-          - cmatrix
+        name: cmatrix
 
     - name: Ubuntu => install cmatrix
       when: ansible_distribution == 'Ubuntu'
