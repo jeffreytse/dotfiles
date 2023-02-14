@@ -142,3 +142,19 @@
       apt:
         name: privoxy
         state: latest
+
+    ###########################
+    # ngrok
+    # Reverse proxy, secure introspectable tunnels to localhost
+    ###########################
+    - name: MacOS => install ngrok
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: ngrok
+
+    - name: Ubuntu => install ngrok
+      when: ansible_distribution == 'Ubuntu'
+      community.general.snap:
+        name: ngrok
+        channel: latest/edge
+
