@@ -114,3 +114,27 @@
         name: ripgrep
         state: latest
 
+    ###########################
+    # xclip
+    # Command line interface to the X11 clipboard
+    ###########################
+    - name: MacOS => install xclip
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: xclip
+
+    - name: Ubuntu => install xclip
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: xclip
+        state: latest
+
+    ###########################
+    # xquartz
+    # An open-source effort to develop a version of the X.Org X Window
+    # System that runs on macOS (support xclip on MacOS)
+    ###########################
+    - name: MacOS => install xquartz
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: xquartz
