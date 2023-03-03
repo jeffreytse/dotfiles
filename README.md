@@ -42,6 +42,8 @@ Please NOTE that this project isn't a distro, it's intended for my personal
 usage, and perhaps some inspiration, _not complete duplication_. If you see
 something weird or wrong please raise an issue instead.
 
+![screenshot](https://user-images.githubusercontent.com/9413601/222759361-bdcda143-9ca3-449e-b0f2-07b62d009f3a.png)
+
 ## Setup
 
 Cloning Dotfiles
