@@ -7,7 +7,7 @@
 	quotepath = false
 	excludesfile = ~/.gitignore
 	ignorecase = false
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 [github]
 	user = jeffreytse.mail@gmail.com
 [push]
@@ -18,22 +18,27 @@
 	ff = yes
 [merge]
 	ff = no
+	conflictstyle = diff3
 [init]
 	defaultBranch = main
 [interactive]
-	diffFilter = diff-so-fancy --patch
-[color]
-	ui = true
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = 11
-	frag = magenta bold
-	func = 146 bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+	diffFilter = delta --color-only
+[delta]
+	features = line-numbers decorations
+	navigate = true    # use n and N to move between diff sections
+	light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+	side-by-side = false
+[diff]
+	colorMoved = default
+[delta "line-numbers"]
+	line-numbers = true
+	line-numbers-left-format = "{nm:>4}"
+	line-numbers-right-format = "{np:>4}│"
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+	hunk-header-decoration-style = cyan box ul
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
