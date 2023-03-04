@@ -34,11 +34,8 @@
 	line-numbers = true
 	line-numbers-left-format = "{nm:>4}"
 	line-numbers-right-format = "{np:>4}│"
-	commit-decoration-style = bold yellow box ul
-	file-style = bold yellow ul
-	file-decoration-style = none
-	hunk-header-decoration-style = cyan box ul
+	hunk-header-decoration-style = grey box
 [delta "decorations"]
 	commit-decoration-style = bold yellow box ul
-	file-style = bold yellow ul
-	file-decoration-style = none
+	file-style = bold yellow
+	file-decoration-style = grey ul
