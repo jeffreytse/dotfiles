@@ -36,6 +36,6 @@
 	line-numbers-right-format = "{np:>4}│"
 	hunk-header-decoration-style = grey box
 [delta "decorations"]
-	commit-decoration-style = bold yellow box ul
+	commit-decoration-style = yellow
 	file-style = bold yellow
 	file-decoration-style = grey ul
