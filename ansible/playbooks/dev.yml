@@ -73,6 +73,21 @@
         name: git-delta
 
     ###########################
+    # jq
+    # A lightweight and flexible command-line JSON processor
+    ###########################
+    - name: MacOS => install jq
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: jq
+
+    - name: Ubuntu => install jq
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: jq
+        state: latest
+
+    ###########################
     # nnn
     # n³ The unorthodox terminal file manager
     ###########################
