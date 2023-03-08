@@ -88,6 +88,14 @@
         state: latest
 
     ###########################
+    # bat
+    # A cat(1) clone with wings
+    ###########################
+    - name: Install bat
+      community.general.cargo:
+        name: bat
+
+    ###########################
     # nnn
     # n³ The unorthodox terminal file manager
     ###########################
