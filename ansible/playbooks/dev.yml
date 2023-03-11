@@ -96,6 +96,15 @@
         name: bat
 
     ###########################
+    # tldr
+    # 📚 Collaborative cheatsheets for console commands
+    ###########################
+    - name: Install tldr
+      community.general.npm:
+        name: tldr
+        global: true
+
+    ###########################
     # nnn
     # n³ The unorthodox terminal file manager
     ###########################
