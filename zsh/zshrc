@@ -266,6 +266,8 @@ eval $(thefuck --alias)
 
 eval "$(starship init zsh)"
 
+eval "$(z init zsh)"
+
 # Clean filesystem user watches
 function fs-watcher-clean() {
     if [[ "$OSTYPE" == "darwin"* ]]; then

@@ -100,6 +100,15 @@
         state: latest
 
     ###########################
+    # zoxide
+    # A smarter cd command. Supports all major shells.
+    ###########################
+    - name: Install zoxide
+      community.general.cargo:
+        name: zoxide
+        state: latest
+
+    ###########################
     # ripgrep
     # A battle-tested alternative for grep
     ###########################
