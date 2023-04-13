@@ -626,7 +626,7 @@ nmap <silent> <leader>tv :TestVisit<CR>
 
 " Plugin leetcode
 let g:leetcode_browser = 'chrome'
-let g:leetcode_solution_filetype = 'java'
+let g:leetcode_solution_filetype = 'python3'
 
 " syntax highlight
 syntax enable
