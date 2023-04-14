@@ -26,6 +26,15 @@
         force: true
         depth: 1
 
+    - name: Clone tmux-plugins/tpm
+      ansible.builtin.git:
+        repo: https://github.com/tmux-plugins/tpm.git
+        dest: '{{ tmux_home }}/plugins/tpm'
+        clone: true
+        update: true
+        force: true
+        depth: 1
+
     - name: Link .tmux.conf
       ansible.builtin.file:
         src: '{{ tmux_home }}/.tmux.conf'
