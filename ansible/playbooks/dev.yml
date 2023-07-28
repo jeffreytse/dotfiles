@@ -22,12 +22,12 @@
     # tig
     # Text-mode interface for git
     ###########################
-    - name: MacOS => install nginx
+    - name: MacOS => install tig
       when: ansible_distribution == 'MacOSX'
       community.general.homebrew:
         name: tig
 
-    - name: Ubuntu => install curl
+    - name: Ubuntu => install tig
       when: ansible_distribution == 'Ubuntu'
       apt:
         name: tig
