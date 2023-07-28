@@ -51,18 +51,14 @@
     # Magnificent app which corrects your previous console command.
     ###########################
     - name: Install thefuck
-      ansible.builtin.pip:
-        name:
-          - thefuck
+      ansible.builtin.command: pipx install thefuck
 
     ###########################
     # gcalcli
     # Google Calendar Command Line Interface
     ###########################
     - name: Install gcalcli
-      ansible.builtin.pip:
-        name:
-          - gcalcli
+      ansible.builtin.command: pipx install gcalcli
 
     ###########################
     # neofetch
@@ -181,8 +177,7 @@
     # Supports DNS tunneling.
     ###########################
     - name: Install sshuttle
-      ansible.builtin.pip:
-        name: sshuttle
+      ansible.builtin.command: pipx install shuttle
 
     ###########################
     # translate-shell

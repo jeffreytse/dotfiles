@@ -10,6 +10,5 @@
         state: link
 
     - name: Install ansible-lint
-      ansible.builtin.pip:
-        name: ansible-lint
+      ansible.builtin.command: pipx install ansible-lint
 

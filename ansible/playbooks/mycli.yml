@@ -3,8 +3,7 @@
 
   tasks:
     - name: Install mycli
-      ansible.builtin.pip:
-        name: mycli
+      ansible.builtin.command: pipx install mycli
 
     - name: Link .my.cnf
       ansible.builtin.file:
