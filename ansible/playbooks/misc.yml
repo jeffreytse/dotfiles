@@ -195,3 +195,10 @@
       apt:
         name: translate-shell
         state: latest
+
+    ###########################
+    # asciinema
+    # Terminal session recorder 📹
+    ###########################
+    - name: Install asciinema
+      ansible.builtin.command: pipx install asciinema
