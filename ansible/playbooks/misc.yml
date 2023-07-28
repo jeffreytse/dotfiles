@@ -81,6 +81,22 @@
         state: latest
 
     ###########################
+    # figlet
+    # A program for making large letters out of ordinary text
+    #  _ _ _          _   _     _
+    # | (_) | _____  | |_| |__ (_)___
+    # | | | |/ / _ \ | __| '_ \| / __|
+    # | | |   <  __/ | |_| | | | \__ \
+    # |_|_|_|\_\___|  \__|_| |_|_|___/
+    #
+    # http://www.figlet.org/
+    ###########################
+    - name: Install figlet-cli
+      community.general.npm:
+        name: figlet-cli
+        global: true
+
+    ###########################
     # glow
     # Render markdown on the CLI, with pizzazz! 💅
     ###########################
@@ -168,3 +184,19 @@
       ansible.builtin.pip:
         name: sshuttle
 
+    ###########################
+    # translate-shell
+    # 💬 Command-line translator using Google Translate, Bing Translator,
+    # Yandex.Translate, etc.
+    #
+    # https://github.com/soimort/translate-shell
+    ###########################
+    - name: MacOS => install translate-shell
+      ansible.builtin.homebrew:
+        name: translate-shell
+
+    - name: Ubuntu => install translate-shell
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: translate-shell
+        state: latest
