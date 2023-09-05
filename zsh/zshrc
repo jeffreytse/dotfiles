@@ -234,7 +234,7 @@ export PATH="$PATH:$HOME/.dotnet/tools"
 export PATH="$PATH:$(asdf where perl)/bin"
 
 # Others
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # java home
 export JAVA_HOME="$(asdf where java)"
