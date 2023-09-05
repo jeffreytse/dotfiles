@@ -13,3 +13,4 @@ rust 1.66.0
 tomcat 9.0.75
 pipx 1.2.0
 pnpm 8.6.10
+fzf 0.42.0

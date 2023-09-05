@@ -133,9 +133,6 @@ zinit snippet OMZP::common-aliases
 # zinit ice lucid wait
 # zinit snippet OMZP::sudo
 
-zinit ice from"gh-r" as"program"
-zinit light junegunn/fzf
-
 zinit ice lucid wait
 zinit snippet OMZP::fzf
 
@@ -217,6 +214,9 @@ export LANG=en_US.UTF-8
 # asdf-vm
 source $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
+
+# fzf bin
+export FZF_BASE="$(asdf where fzf)"
 
 # composor bin
 export PATH="$PATH:$(asdf where php)/.composer/vendor/bin"
