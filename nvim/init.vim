@@ -1,3 +1,5 @@
+" (Neo)Vim Configuration
+"
 " Use Vim settings, rather then Vi settings. This setting must be as early as
 " possible, as it has side effects.
 "
@@ -21,6 +23,8 @@ if version >= 604
   set encoding=utf-8
 endif
 
+syntax on               " syntax highlighting
+
 " Enable file type detection
 filetype on
 " Enable loading the plugin files for specific file types
@@ -38,7 +42,7 @@ set noswapfile          " no swap files
 "set nowrap
 
 " Show linenumbers
-set number
+set number              " display line number
 set numberwidth=5
 "set relativenumber
 
@@ -56,7 +60,7 @@ set signcolumn=yes      " always show signcolumns
 set fileformat=unix
 set showmatch           " Show matched pairs
 set cursorline          " Highlight cursor line
-set hlsearch            " Highlight searching
+set hlsearch            " Highlight all search results
 set showcmd             " Display incomplete commands
 set confirm             " Need confrimation while exit
 set ruler               " Show the cursor position all the time
@@ -67,7 +71,7 @@ set fileencodings=utf-8,gb18030,gbk,big5
 
 " Indent
 set cindent             " C style indentation
-set autoindent
+set autoindent          " Minimal automatic indenting for any filetype.
 set smartindent
 
 " Set Proper Tabs
