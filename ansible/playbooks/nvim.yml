@@ -41,6 +41,21 @@
         state: link
         force: true
 
+    - name: Create a directory for lombok.jar
+      when: not ansible_check_mode
+      ansible.builtin.file:
+        path: '/usr/local/share/lombok'
+        state: directory
+        mode: 0770
+        recurse: true
+
+    - name: Download the latest lombok.jar (https://projectlombok.org/)
+      when: not ansible_check_mode
+      ansible.builtin.get_url:
+        url: 'https://projectlombok.org/downloads/lombok.jar'
+        dest: '/usr/local/share/lombok/lombok.jar'
+        mode: 0770
+
     - name: Install pynvim (support `pyx` command)
       ansible.builtin.pip:
         name: pynvim
