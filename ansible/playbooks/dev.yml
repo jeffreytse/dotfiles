@@ -123,7 +123,7 @@
     # usql
     # Universal command-line interface for SQL databases Topics
     ###########################
-    - name: Install dbeaver
+    - name: Install usql
       ansible.builtin.command: go install github.com/xo/usql@latest
 
     ###########################
