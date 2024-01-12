@@ -39,3 +39,5 @@
 	commit-decoration-style = yellow
 	file-style = bold yellow
 	file-decoration-style = grey ul
+[rerere]
+	enabled = 1
