@@ -207,7 +207,7 @@
     # openconnect
     # Multi-protocol VPN client, for Cisco AnyConnect VPNs and others.
     ###########################
-    - name: MacOS => Install openconnect
+    - name: MacOS => install openconnect
       when: ansible_distribution == 'MacOSX'
       community.general.homebrew:
         name: openconnect
@@ -221,3 +221,17 @@
     - name: Install vpn-slice
       ansible.builtin.command: pipx install "vpn-slice[dnspython,setproctitle]"
 
+    ###########################
+    # proxychains
+    # A tool that forces any TCP connection made by any given application to
+    # follow through proxy like TOR or any other SOCKS4, SOCKS5 or HTTP(S)
+    # proxy. Supported auth-types: "user/pass" for SOCKS4/5, "basic" for HTTP.
+    #
+    # https://github.com/haad/proxychains
+    #
+    # For macOS: SIP should be disabled via `csrutil disable`
+    ###########################
+    - name: MacOS => install proxychains
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: proxychains-ng
