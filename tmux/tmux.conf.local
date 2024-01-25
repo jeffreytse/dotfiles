@@ -20,3 +20,5 @@ set -g @plugin 'tmux-plugins/tmux-yank'
 bind C-s run-shell -b ~/.tmux/plugins/tmux-resurrect/scripts/save.sh
 bind C-r run-shell -b ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh
 
+# switch to last session
+bind S switch-client -l
