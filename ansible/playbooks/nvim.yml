@@ -52,8 +52,8 @@
     - name: Download the latest lombok.jar (https://projectlombok.org/)
       when: not ansible_check_mode
       ansible.builtin.get_url:
-        url: 'https://projectlombok.org/downloads/lombok.jar'
-        dest: '/usr/local/share/lombok/lombok.jar'
+        url: 'https://projectlombok.org/downloads/lombok-1.18.30.jar'
+        dest: '/usr/local/share/lombok/lombok-1.18.30.jar'
         mode: 0770
 
     - name: Install pynvim (support `pyx` command)
