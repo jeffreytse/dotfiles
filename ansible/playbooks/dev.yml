@@ -120,6 +120,22 @@
         state: latest
 
     ###########################
+    # entr
+    # Run arbitrary commands when files change
+    # https://github.com/eradman/entr
+    ###########################
+    - name: MacOS => install entr
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: entr
+
+    - name: Ubuntu => install entr
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: entr
+        state: latest
+
+    ###########################
     # usql
     # Universal command-line interface for SQL databases Topics
     ###########################
