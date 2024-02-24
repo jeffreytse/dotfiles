@@ -211,3 +211,10 @@
       community.general.homebrew_cask:
         name: sourcetree
 
+    ###########################
+    # diagrams
+    # 🎨 Diagram as Code for prototyping cloud system architectures
+    # https://github.com/mingrammer/diagrams
+    ###########################
+    - name: All => install diagrams
+      ansible.builtin.command: pip install diagrams
