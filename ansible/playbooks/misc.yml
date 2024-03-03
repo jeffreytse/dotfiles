@@ -235,3 +235,22 @@
       when: ansible_distribution == 'MacOSX'
       community.general.homebrew:
         name: proxychains-ng
+
+    ###########################
+    # autossh
+    # Automatically restart SSH sessions and tunnels.
+    #
+    # https://github.com/Autossh/autossh
+    #
+    # e.g. autossh -M 20000 -L 5000:localhost:5000 -C -N -T user@example.com
+    ###########################
+    - name: MacOS => install autossh
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: autossh
+
+    - name: Ubuntu => install autossh
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: autossh
+        state: latest
