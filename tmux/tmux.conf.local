@@ -22,3 +22,6 @@ bind C-r run-shell -b ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh
 
 # switch to last session
 bind S switch-client -l
+
+# switch to last window
+bind W last-window
