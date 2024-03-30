@@ -218,3 +218,19 @@
     ###########################
     - name: All => install diagrams
       ansible.builtin.command: pip install diagrams
+
+    ###########################
+    # tree
+    # A recursive directory listing command or program that produces a
+    # depth-indented listing of files.
+    ###########################
+    - name: MacOS => install tree
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: tree
+
+    - name: Ubuntu => install tree
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: tree
+        state: latest
