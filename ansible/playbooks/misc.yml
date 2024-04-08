@@ -256,3 +256,36 @@
       apt:
         name: autossh
         state: latest
+
+    ###########################
+    # speedtest
+    # Internet connection measurement for developers
+    #
+    # https://www.speedtest.net/apps/cli
+    ###########################
+    - name: Tap a Homebrew repository -> teamookla/speedtest
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_tap:
+        name: teamookla/speedtest
+
+    - name: MacOS => install speedtest
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: speedtest
+
+    - name: Ubuntu => install speedtest script.deb.sh
+      when: ansible_distribution == 'Ubuntu'
+      become: yes
+      become_method: su
+      ansible.builtin.command:
+        curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
+      # Ignore sudo error in the test
+      ignore_errors: yes
+
+    - name: Ubuntu => install speedtest
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: speedtest
+        state: latest
+      # Ignore sudo error in the test as previous script isn't run
+      ignore_errors: yes
