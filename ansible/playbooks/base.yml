@@ -11,6 +11,18 @@
       loop:
         - "{{ ansible_env.HOME }}/.config"
 
+    - name: Set locale to en_US.UTF-8
+      ansible.builtin.shell: |
+        if ! grep "LC_ALL=en_US.UTF-8" '/etc/environment'>/dev/null; then
+          echo "LC_ALL=en_US.UTF-8" >> /etc/environment
+        fi
+        if ! grep "en_US.UTF-8 UTF-8" '/etc/locale.gen'>/dev/null; then
+          echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
+        fi
+        echo "LANG=en_US.UTF-8" > /etc/locale.conf
+        locale-gen en_US.UTF-8
+      become: true
+
     ###########################
     # coreutils
     # A package of GNU software containing implementations for many
