@@ -17,6 +17,7 @@
       apt:
         name: nginx
         state: latest
+      become: true
 
     ###########################
     # tig
@@ -32,6 +33,7 @@
       apt:
         name: tig
         state: latest
+      become: true
 
     ###########################
     # gitui
@@ -86,6 +88,7 @@
       apt:
         name: jq
         state: latest
+      become: true
 
     ###########################
     # bat
@@ -118,6 +121,7 @@
       apt:
         name: nnn
         state: latest
+      become: true
 
     ###########################
     # entr
@@ -134,6 +138,7 @@
       apt:
         name: entr
         state: latest
+      become: true
 
     ###########################
     # usql
@@ -234,3 +239,4 @@
       apt:
         name: tree
         state: latest
+      become: true

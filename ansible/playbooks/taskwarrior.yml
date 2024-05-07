@@ -12,6 +12,7 @@
       apt:
         name: taskwarrior
         state: latest
+      become: true
 
     - name: Create task config directory
       ansible.builtin.file:

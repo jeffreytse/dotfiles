@@ -39,6 +39,7 @@
       apt:
         name: coreutils
         state: latest
+      become: true
 
     ###########################
     # inetutils
@@ -54,6 +55,7 @@
       apt:
         name: inetutils-tools
         state: latest
+      become: true
 
     ###########################
     # snap
@@ -64,6 +66,7 @@
       apt:
         name: snapd
         state: latest
+      become: true
 
     ###########################
     # curl
@@ -80,6 +83,7 @@
       apt:
         name: curl
         state: latest
+      become: true
 
     ###########################
     # wget
@@ -95,6 +99,7 @@
       apt:
         name: wget
         state: latest
+      become: true
 
     ###########################
     # htop
@@ -110,6 +115,7 @@
       apt:
         name: htop
         state: latest
+      become: true
 
     ###########################
     # zoxide
@@ -134,6 +140,7 @@
       apt:
         name: ripgrep
         state: latest
+      become: true
 
     ###########################
     # xclip
@@ -149,6 +156,7 @@
       apt:
         name: xclip
         state: latest
+      become: true
 
     ###########################
     # xquartz

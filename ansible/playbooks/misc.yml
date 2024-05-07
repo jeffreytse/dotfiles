@@ -16,6 +16,7 @@
       apt:
         name: ffmpeg
         state: latest
+      become: true
 
     ###########################
     # pandoc
@@ -33,6 +34,7 @@
       apt:
         name: pandoc
         state: latest
+      become: true
 
     - name: MacOS => install basictex as pandoc PDF convertor
       when: ansible_distribution == 'MacOSX'
@@ -77,6 +79,7 @@
       apt:
         name: neofetch
         state: latest
+      become: true
 
     ###########################
     # figlet
@@ -141,6 +144,7 @@
       apt:
         name: cmatrix
         state: latest
+      become: true
 
     ###########################
     # privoxy
@@ -156,6 +160,7 @@
       apt:
         name: privoxy
         state: latest
+      become: true
 
     ###########################
     # ngrok
@@ -197,6 +202,7 @@
       apt:
         name: translate-shell
         state: latest
+      become: true
 
     ###########################
     # asciinema
@@ -256,6 +262,7 @@
       apt:
         name: autossh
         state: latest
+      become: true
 
     ###########################
     # speedtest
@@ -289,3 +296,4 @@
         state: latest
       # Ignore sudo error in the test as previous script isn't run
       ignore_errors: yes
+      become: true

@@ -16,6 +16,7 @@
       apt:
         name: tmux
         state: latest
+      become: true
 
     - name: Clone gpakosz/.tmux
       ansible.builtin.git:

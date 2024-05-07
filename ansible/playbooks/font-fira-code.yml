@@ -18,4 +18,5 @@
       apt:
         name: fonts-firacode
         state: latest
+      become: true
 

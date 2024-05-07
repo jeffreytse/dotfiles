@@ -16,10 +16,12 @@
       apt:
         name: zsh
         state: latest
+      become: true
 
     - name: Change default shell to zsh
       ansible.builtin.shell:
         cmd: 'chsh -s /bin/zsh'
+      become: true
 
     - name: Install oh-my-zsh
       ansible.builtin.shell:

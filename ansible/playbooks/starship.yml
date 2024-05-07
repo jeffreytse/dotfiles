@@ -6,6 +6,7 @@
     - name: Install starship
       ansible.builtin.shell:
         cmd: 'curl -sS https://starship.rs/install.sh | sh -s -- -f'
+      become: true
 
     - name: Link starship.toml
       ansible.builtin.file:
