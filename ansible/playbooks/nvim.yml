@@ -8,11 +8,19 @@
       community.general.homebrew:
         name: neovim
 
+    - name: Add neovim unstable repository from PPA
+      when: ansible_distribution == 'Ubuntu'
+      ansible.builtin.apt_repository:
+        repo: ppa:neovim-ppa/unstable
+        state: present
+      become: true
+
     - name: Ubuntu => install neovim
       when: ansible_distribution == 'Ubuntu'
-      community.general.snap:
-        name: nvim
-        classic: true
+      apt:
+        name: neovim
+        state: latest
+      become: true
 
     - name: Create nvim config directory
       ansible.builtin.file:
