@@ -4,6 +4,7 @@
 
   tasks:
     - name: Tap a Homebrew repository -> wez/wezterm
+      when: ansible_distribution == 'MacOSX'
       community.general.homebrew_tap:
         name: wez/wezterm
 
