@@ -32,6 +32,9 @@
 - import_playbook: playbooks/font-fira-code.yml
   tags: [fira-code]
 
+- import_playbook: playbooks/nerd-fonts.yml
+  tags: [nerd-fonts]
+
 - import_playbook: playbooks/mycli.yml
   tags: [mycli]
 
