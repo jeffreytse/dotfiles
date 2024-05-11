@@ -58,6 +58,25 @@
       become: true
 
     ###########################
+    # gnu-tar
+    #
+    # The Linux 'tar' stands for tape archive, which is used to create Archive
+    # and extract the Archive files.
+    #
+    # Notes:
+    # - Linux/OSX tar has compatibility issue, tarballs created on OS X give
+    #   errors when untarred in Linux.
+    # - Mac OS X 10.6 uses a BSD tar by default but also ships with a gnutar
+    #   at `/usr/bin/gnutar`, it's not shipped anymore with Mac OS X (at least
+    #   as of Mavericks).
+    #
+    ###########################
+    - name: MacOS => install curl
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: gnu-tar
+
+    ###########################
     # snap
     # The app store for Linux
     ###########################
