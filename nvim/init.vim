@@ -493,6 +493,9 @@ command! -nargs=0 Prettier :CocCommand prettier.formatFile
 nmap ge :CocCommand explorer<cr>
 
 
+" Plugin winresizer settings.
+let g:winresizer_vert_resize = 5
+
 " Plugin vim-highlightyank settings.
 let g:highlightedyank_highlight_duration = 100
 
