@@ -69,10 +69,16 @@
     # git-delta
     # A syntax-highlighting pager for git, diff and grep output
     ###########################
-    - name: MacOS => install nginx
+    - name: MacOS => install delta
       when: ansible_distribution == 'MacOSX'
       community.general.homebrew:
         name: git-delta
+
+    - name: Ubuntu => install delta
+      when: ansible_distribution == 'Ubuntu'
+      ansible.builtin.apt:
+        deb: https://github.com/dandavison/delta/releases/download/0.17.0/git-delta-musl_0.17.0_amd64.deb
+      become: true
 
     ###########################
     # jq
