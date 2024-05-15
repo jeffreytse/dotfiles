@@ -319,6 +319,7 @@ let g:coc_global_extensions = [
       \ 'coc-xml',
       \ 'coc-wxml',
       \ 'coc-sql',
+      \ 'coc-lua',
       \ 'coc-go',
       \ 'coc-java',
       \ 'coc-java-debug',
