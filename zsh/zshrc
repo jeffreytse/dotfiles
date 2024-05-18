@@ -215,6 +215,11 @@ export LANG=en_US.UTF-8
 source $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
 
+# snap bin for ubuntu
+if [ -d "/snap/bin" ]; then
+  export PATH="$PATH:/snap/bin"
+fi
+
 # fzf bin
 export FZF_BASE="$(asdf where fzf)"
 
