@@ -1,5 +1,5 @@
 # source default local configuration
-source -q ~/.tmux/.tmux.conf.local
+source -q "$HOME/.tmux/.tmux.conf.local"
 
 # start with mouse mode enabled
 set -g mouse on
@@ -17,8 +17,8 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-yank'
 
 # tmux-resurrect
-bind C-s run-shell -b ~/.tmux/plugins/tmux-resurrect/scripts/save.sh
-bind C-r run-shell -b ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh
+bind C-s run-shell -b "$HOME/.tmux/plugins/tmux-resurrect/scripts/save.sh"
+bind C-r run-shell -b "$HOME/.tmux/plugins/tmux-resurrect/scripts/restore.sh"
 
 # switch to last session
 bind S switch-client -l
