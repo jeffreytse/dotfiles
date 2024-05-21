@@ -12,6 +12,7 @@
         - "{{ ansible_env.HOME }}/.config"
 
     - name: Set locale to en_US.UTF-8
+      when: ansible_distribution == 'Ubuntu'
       ansible.builtin.shell: |
         if ! grep "LC_ALL=en_US.UTF-8" '/etc/environment'>/dev/null; then
           echo "LC_ALL=en_US.UTF-8" >> /etc/environment
