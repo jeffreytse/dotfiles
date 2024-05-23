@@ -7,40 +7,46 @@
     # Nerd Fonts
     # Patches developer targeted fonts with a high number of glyphs (icons).
     ###########################
-    - name: Install nerd fonts
+    - name: MacOS => install docker server
+      when: ansible_distribution == 'MacOSX'
       ansible.builtin.shell: |
         declare -a fonts=(
-            CodeNewRoman
-            DroidSansMono
+          font-fira-code-nerd-font
+          font-hack-nerd-font
+        )
+
+        brew tap homebrew/cask-fonts
+
+        for font in "${fonts[@]}"; do
+          brew install --cask "$font"
+        done
+      become: true
+
+    - name: Install nerd fonts
+      when: ansible_distribution == 'Ubuntu'
+      ansible.builtin.shell: |
+        declare -a fonts=(
             FiraCode
-            FiraMono
             Hack
-            JetBrainsMono
-            Meslo
-            Noto
-            RobotoMono
-            SourceCodePro
-            SpaceMono
-            Ubuntu
-            UbuntuMono
         )
 
         version='2.1.0'
         fonts_dir="${HOME}/.local/share/fonts"
 
         if [[ ! -d "$fonts_dir" ]]; then
-            mkdir -p "$fonts_dir"
+          mkdir -p "$fonts_dir"
         fi
 
         for font in "${fonts[@]}"; do
-            zip_file="${font}.zip"
-            download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/${zip_file}"
-            echo "Downloading $download_url"
-            wget "$download_url"
-            unzip "$zip_file" -d "$fonts_dir"
-            rm "$zip_file"
+          zip_file="${font}.zip"
+          download_url="https://github.com/ryanoasis/nerd-fonts/releases/download/v${version}/${zip_file}"
+          echo "Downloading $download_url"
+          wget "$download_url"
+          unzip "$zip_file" -d "$fonts_dir"
+          rm "$zip_file"
         done
 
         find "$fonts_dir" -name '*Windows Compatible*' -delete
 
         fc-cache -fv
+      become: true
