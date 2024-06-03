@@ -658,6 +658,6 @@ colorscheme PaperColor
 
 " Vim split bar styling
 " set fillchars+=vert:│
-hi VertSplit guifg=darkgray guibg=none gui=none
+hi VertSplit guifg=darkgray guibg=NONE gui=none
       \ ctermfg=darkgray ctermbg=none term=none cterm=none
 
