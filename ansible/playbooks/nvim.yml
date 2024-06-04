@@ -50,9 +50,9 @@
         force: true
 
     - name: Install vim-plug
-      ansible.builtin.shell: |
-        curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+      ansible.builtin.shell: >
+        curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
+          https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     - name: Create a directory for lombok.jar
       when: not ansible_check_mode
