@@ -1,0 +1,32 @@
+---
+- name: Configure aria2
+  hosts: localhost
+
+  vars:
+    aria2_home: '{{ ansible_env.HOME }}/.aria2'
+
+  tasks:
+    - name: MacOS => install aria2
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: aria2
+
+    - name: Create aria2 config directory
+      ansible.builtin.file:
+        path: '{{ aria2_home }}'
+        state: directory
+        mode: 0755
+
+    - name: Link aria2.conf
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../aria2/aria2.conf'
+        dest: '{{ ansible_env.HOME }}/.aria2/aria2.conf'
+        state: link
+        force: true
+
+    - name: ensure aria2.session exists
+      copy:
+        content: ""
+        dest: '{{ aria2_home }}/aria2.session'
+        force: false
+        mode: 0755
