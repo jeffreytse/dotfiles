@@ -15,6 +15,13 @@
         force: true
         depth: 1
 
+    - name: Link .asdfrc
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../asdf/asdfrc'
+        dest: '{{ ansible_env.HOME }}/.asdfrc'
+        state: link
+        force: true
+
     - name: Link .tool-versions
       ansible.builtin.file:
         src: '{{ ansible_env.PWD }}/../../asdf/tool-versions'
