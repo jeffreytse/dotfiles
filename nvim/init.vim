@@ -661,3 +661,4 @@ colorscheme PaperColor
 hi VertSplit guifg=darkgray guibg=NONE gui=none
       \ ctermfg=darkgray ctermbg=none term=none cterm=none
 
+lua require('init')

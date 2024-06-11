@@ -35,10 +35,23 @@
         state: link
         force: true
 
+    - name: Create lua config directory
+      ansible.builtin.file:
+        path: '{{ ansible_env.HOME }}/.config/nvim/lua'
+        state: directory
+        mode: 0755
+
     - name: Link init.vim
       ansible.builtin.file:
         src: '{{ ansible_env.PWD }}/../../nvim/init.vim'
         dest: '{{ ansible_env.HOME }}/.config/nvim/init.vim'
+        state: link
+        force: true
+
+    - name: Link init.lua
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../nvim/init.lua'
+        dest: '{{ ansible_env.HOME }}/.config/nvim/lua/init.lua'
         state: link
         force: true
 
