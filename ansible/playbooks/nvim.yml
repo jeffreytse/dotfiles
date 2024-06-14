@@ -83,6 +83,10 @@
         dest: '/usr/local/share/lombok/lombok-1.18.30.jar'
         mode: 0775
 
+    - name: Install neovim `python3` provider (Run :checkhealth provider)
+      ansible.builtin.pip:
+        name: neovim
+
     - name: Install pynvim (support `pyx` command)
       ansible.builtin.pip:
         name: pynvim
