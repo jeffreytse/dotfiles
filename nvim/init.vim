@@ -219,6 +219,12 @@ Plug 'honza/vim-snippets'
 Plug 'tpope/vim-repeat'
 Plug 'machakann/vim-sandwich'
 
+"-- Copilot ---
+Plug 'github/copilot.vim'
+Plug 'zbirenbaum/copilot.lua'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
+
 " --- Markdown / Writting ---
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install'}
 Plug 'dhruvasagar/vim-table-mode'
@@ -635,6 +641,21 @@ nmap <silent> <leader>tv :TestVisit<CR>
 " Plugin leetcode
 let g:leetcode_browser = 'chrome'
 let g:leetcode_solution_filetype = 'python3'
+
+" Plugin copilot-chat settings.
+nmap <silent> <leader><leader>p :CopilotChatToggle<CR>
+vmap <silent> <leader><leader>p :CopilotChat<CR>
+map <silent> <leader><leader>x :CopilotChatClose<CR>
+map <silent> <leader><leader>s :CopilotChatStop<CR>
+map <silent> <leader><leader>r :CopilotChatReset<CR>
+map <silent> <leader><leader>f :CopilotChatFix<CR>
+map <silent> <leader><leader>F :CopilotChatFixDiagnostic<CR>
+map <silent> <leader><leader>e :CopilotChatExplain<CR>
+map <silent> <leader><leader>v :CopilotChatReview<CR>
+map <silent> <leader><leader>o :CopilotChatOptimize<CR>
+map <silent> <leader><leader>c :CopilotChatCommit<CR>
+map <silent> <leader><leader>d :CopilotChatDocs<CR>
+map <silent> <leader><leader>t :CopilotChatTests<CR>
 
 " syntax highlight
 syntax enable
