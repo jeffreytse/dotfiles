@@ -144,7 +144,7 @@
     - name: Install zoxide
       community.general.cargo:
         name: zoxide
-        state: latest
+        locked: true
 
     ###########################
     # ripgrep
