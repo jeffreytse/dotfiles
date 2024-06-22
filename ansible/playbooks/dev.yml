@@ -43,17 +43,24 @@
       community.general.cargo:
         name: gitui
         locked: true
+        version: 0.26.3
 
     - name: Create gitui config directory
       ansible.builtin.file:
-        path: '{{ ansible_env.HOME }}/.config/gitui'
+        path: "{{ ansible_env.HOME }}/.config/gitui"
         state: directory
         mode: 0755
 
+    # The soft link support bringing up in a fixed version v0.24.2
+    #
+    # Refs:
+    # - https://github.com/extrawurst/gitui/issues/1751
+    # - https://github.com/extrawurst/gitui/releases/tag/v0.24.2
+    #
     - name: Link key_bindings.ron for vim-like bindings
       ansible.builtin.file:
-        src: '{{ ansible_env.PWD }}/../../gitui/key_bindings.ron'
-        dest: '{{ ansible_env.HOME }}/.config/gitui/key_bindings.ron'
+        src: "{{ ansible_env.PWD }}/../../gitui/key_bindings.ron"
+        dest: "{{ ansible_env.HOME }}/.config/gitui/key_bindings.ron"
         state: link
         force: true
 
