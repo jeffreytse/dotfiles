@@ -126,7 +126,6 @@ zinit snippet OMZP::docker-compose
 zinit snippet OMZP::history
 zinit snippet OMZP::textmate
 zinit snippet OMZP::lighthouse
-zinit snippet OMZP::tmux
 zinit snippet OMZP::fancy-ctrl-z
 zinit snippet OMZP::common-aliases
 
@@ -174,7 +173,11 @@ zinit light jeffreytse/zsh-vi-mode
 #############################
 
 # Functions Autoloading
-fpath=(~/.zsh $fpath)
+
+# Homebrew functionalities like auto-completion
+if type brew &>/dev/null; then
+  FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+fi
 
 # Completion
 autoload -U promptinit && promptinit
@@ -211,6 +214,10 @@ export LANG=en_US.UTF-8
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# unified XDG_DATA_HOME and XDG_CONFIG_HOME
+export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+
 # asdf-vm
 source $HOME/.asdf/asdf.sh
 fpath=(${ASDF_DIR}/completions $fpath)
@@ -229,6 +236,9 @@ export PATH="$PATH:$(asdf where php)/.composer/vendor/bin"
 # python bin
 export PATH="$PATH:$(asdf where python)/bin"
 
+# golang bin
+export PATH="$PATH:$(asdf where golang)/packages/bin"
+
 # dotnet bin
 export PATH="$PATH:$(asdf where dotnet-core)"
 
@@ -245,7 +255,7 @@ export PATH="$PATH:$HOME/.local/bin"
 export JAVA_HOME="$(asdf where java)"
 
 # pnpm
-export PNPM_HOME="$HOME/.local/share/pnpm"
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
