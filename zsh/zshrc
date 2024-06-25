@@ -261,6 +261,16 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
+# android
+export ANDROID_HOME=/usr/local/share/android-sdk
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+export ANDROID_NDK_HOME=/usr/local/share/android-ndk
+
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
 # Set default editor
 export VISUAL="$(command -v nvim)"
 export EDITOR="$VISUAL"
