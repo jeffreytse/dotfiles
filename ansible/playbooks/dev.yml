@@ -105,6 +105,13 @@
       become: true
 
     ###########################
+    # yq
+    # A portable command-line YAML, JSON, XML, CSV, TOML and properties processor
+    ###########################
+    - name: All => install yq
+      ansible.builtin.shell: go install github.com/mikefarah/yq/v4@latest
+
+    ###########################
     # bat
     # A cat(1) clone with wings
     ###########################
