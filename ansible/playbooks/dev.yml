@@ -112,6 +112,15 @@
       ansible.builtin.shell: go install github.com/mikefarah/yq/v4@latest
 
     ###########################
+    # fd
+    # A simple, fast and user-friendly alternative to 'find'
+    ###########################
+    - name: All => Install fd
+      community.general.cargo:
+        name: fd-find
+        locked: true
+
+    ###########################
     # bat
     # A cat(1) clone with wings
     ###########################
@@ -124,7 +133,7 @@
     # tldr
     # 📚 Collaborative cheatsheets for console commands
     ###########################
-    - name: Install tldr
+    - name: All => Install tldr
       community.general.npm:
         name: tldr
         global: true
