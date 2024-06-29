@@ -112,6 +112,15 @@
       ansible.builtin.shell: go install github.com/mikefarah/yq/v4@latest
 
     ###########################
+    # sd
+    # Intuitive find & replace CLI (sed alternative)
+    ###########################
+    - name: All => Install sd
+      community.general.cargo:
+        name: sd
+        locked: true
+
+    ###########################
     # fd
     # A simple, fast and user-friendly alternative to 'find'
     ###########################
@@ -124,7 +133,7 @@
     # bat
     # A cat(1) clone with wings
     ###########################
-    - name: Install bat
+    - name: All => Install bat
       community.general.cargo:
         name: bat
         locked: true
