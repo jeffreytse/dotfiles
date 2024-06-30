@@ -139,6 +139,15 @@
         locked: true
 
     ###########################
+    # tokei
+    # Count your code, quickly
+    ###########################
+    - name: All => Install tokei
+      community.general.cargo:
+        name: tokei
+        locked: true
+
+    ###########################
     # tldr
     # 📚 Collaborative cheatsheets for console commands
     ###########################
