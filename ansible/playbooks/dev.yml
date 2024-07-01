@@ -148,6 +148,15 @@
         locked: true
 
     ###########################
+    # navi
+    # An interactive cheatsheet tool for the command-line
+    ###########################
+    - name: All => Install navi
+      community.general.cargo:
+        name: navi
+        locked: true
+
+    ###########################
     # tldr
     # 📚 Collaborative cheatsheets for console commands
     ###########################
