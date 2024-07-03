@@ -589,6 +589,9 @@ nmap <leader>gl :Gina pull<cr>
 nmap <leader>gp :Gina push<cr>
 nmap <leader>gc :Gina commit<cr>
 
+" Plugin blamer settings.
+nmap <leader>gb :BlamerToggle<CR>
+
 " Plugin sideways settings.
 nnoremap <C-h> :SidewaysLeft<cr>
 nnoremap <C-l> :SidewaysRight<cr>
