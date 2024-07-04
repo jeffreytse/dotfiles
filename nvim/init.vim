@@ -149,6 +149,14 @@ nnoremap <C-w>u :source ~/session.vim<cr>
 inoremap <C-a> <C-o>^
 inoremap <C-e> <C-o>$
 
+" Move lines up and down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
 " Convert unicode escape sequences (i.e. \uXXXX) to a single character
 nnoremap <silent> <leader>fnc :%s/\\u\(\x\{4\}\)/\=nr2char('0x'.submatch(1),1)/g<CR>
 " Format file to utf-8[unix] style
