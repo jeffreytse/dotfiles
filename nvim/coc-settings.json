@@ -12,5 +12,7 @@
   "java.maven.downloadSources": true,
   "java.jdt.ls.java.home": "~/.asdf/installs/java/openjdk-17.0.2",
   "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx1G -Xms100m -javaagent:/usr/local/share/lombok/lombok-1.18.30.jar",
-  "snippets.ultisnips.pythonPrompt": false
+  "snippets.ultisnips.pythonPrompt": false,
+  "explorer.icon.enableNerdfont": true,
+  "tsserver.useLocalTsdk": true
 }
