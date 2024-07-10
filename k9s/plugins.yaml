@@ -1,0 +1,14 @@
+#  $XDG_CONFIG_HOME/k9s/plugins.yaml
+plugins:
+  GoBack:
+    shortCut: q
+    override: true
+    description: "Go Back"
+    scopes:
+      - all
+    command: xdotool
+    background: true
+    confirm: false
+    args:
+      - key
+      - Escape

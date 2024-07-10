@@ -1,0 +1,38 @@
+---
+- name: Configure k9s
+  hosts: localhost
+
+  tasks:
+    ###########################
+    # k9s
+    # 🐶 Kubernetes CLI To Manage Your Clusters In Style!
+    ###########################
+    - name: All => install k9s
+      ansible.builtin.shell: go install github.com/derailed/k9s@latest
+
+    - name: Create k9s config directory
+      ansible.builtin.file:
+        path: '{{ ansible_env.HOME }}/.config/k9s'
+        state: directory
+        mode: 0755
+
+    - name: Link config.yaml
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../k9s/config.yaml'
+        dest: '{{ ansible_env.HOME }}/.config/k9s/config.yaml'
+        state: link
+        force: true
+
+    - name: Link hotkeys.yaml
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../k9s/hotkeys.yaml'
+        dest: '{{ ansible_env.HOME }}/.config/k9s/hotkeys.yaml'
+        state: link
+        force: true
+
+    - name: Link plugins.yaml
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../k9s/plugins.yaml'
+        dest: '{{ ansible_env.HOME }}/.config/k9s/plugins.yaml'
+        state: link
+        force: true
