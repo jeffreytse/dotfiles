@@ -122,6 +122,9 @@ zinit snippet OMZP::gem
 # docker
 zinit snippet OMZP::docker-compose
 
+# kubernetes
+zinit snippet OMZP::kubectl
+
 # others
 zinit snippet OMZP::history
 zinit snippet OMZP::textmate
@@ -299,6 +302,11 @@ eval $(thefuck --alias)
 eval "$(starship init zsh)"
 
 eval "$(z init zsh)"
+
+# kubectl auto completion
+if command -v kubectl &>/dev/null; then
+  source <(kubectl completion zsh)
+fi
 
 # Clean filesystem user watches
 function fs-watcher-clean() {
