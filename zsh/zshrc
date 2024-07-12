@@ -242,6 +242,9 @@ export PATH="$PATH:$(asdf where python)/bin"
 # golang bin
 export PATH="$PATH:$(asdf where golang)/packages/bin"
 
+# rust bin
+export PATH="$PATH:$(asdf where rust)/bin"
+
 # dotnet bin
 export PATH="$PATH:$(asdf where dotnet-core)"
 
