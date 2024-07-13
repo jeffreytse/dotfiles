@@ -297,3 +297,24 @@
       # Ignore sudo error in the test as previous script isn't run
       ignore_errors: yes
       become: true
+
+    ###########################
+    # ttyper
+    # Terminal-based typing test
+    #
+    # https://github.com/bloznelis/typioca
+    ###########################
+    - name: Install ttyper
+      community.general.cargo:
+        name: ttyper
+        locked: true
+
+    ###########################
+    # typioca
+    # Cozy typing speed tester in terminal
+    #
+    # https://github.com/bloznelis/typioca
+    ###########################
+    - name: Install typioca
+      ansible.builtin.command: go install github.com/bloznelis/typioca@latest
+
