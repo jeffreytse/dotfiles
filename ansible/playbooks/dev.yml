@@ -236,6 +236,15 @@
         channel: latest/edge
 
     ###########################
+    # gh
+    # GitHub’s official command line tool
+    ###########################
+    - name: MacOS => install gh
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: gh
+
+    ###########################
     # vscode
     # a code editor redefined and optimized for building and debugging
     # modern web and cloud applications
