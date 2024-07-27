@@ -37,4 +37,6 @@
     stash_open: Some(( code: Char('l'), modifiers: "")),
 
     abort_merge: Some(( code: Char('M'), modifiers: "SHIFT")),
+
+    exit_popup: Some(( code: Char('q'), modifiers: "")),
 )
