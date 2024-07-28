@@ -16,6 +16,9 @@ set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-yank'
 
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run "$HOME/.tmux/plugins/tpm/tpm"
+
 # tmux-resurrect
 bind C-s run-shell -b "$HOME/.tmux/plugins/tmux-resurrect/scripts/save.sh"
 bind C-r run-shell -b "$HOME/.tmux/plugins/tmux-resurrect/scripts/restore.sh"
