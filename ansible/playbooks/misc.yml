@@ -318,3 +318,12 @@
     - name: Install typioca
       ansible.builtin.command: go install github.com/bloznelis/typioca@latest
 
+    ###########################
+    # graphviz
+    # It's an open source graph visualization software.
+    ###########################
+    - name: MacOS => install graphviz
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: graphviz
+
