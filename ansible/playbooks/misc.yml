@@ -327,3 +327,14 @@
       community.general.homebrew_cask:
         name: graphviz
 
+    ###########################
+    # httrack
+    # HTTrack Website Copier, copy websites to your computer
+    #
+    # https://github.com/xroche/httrack
+    ###########################
+    - name: MacOS => install httrack
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        name: httrack
+
