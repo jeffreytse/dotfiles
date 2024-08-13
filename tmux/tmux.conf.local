@@ -11,13 +11,14 @@ set -g mode-keys vi
 
 # -- user plugins -------------------------------------------------------
 
+# Fix uninstalling plugins issue caused by tmux configuration. Instead, using
+# r (Reload config) or S-u (Update plugins) to update plugins.
+bind I run-shell "echo 'Please use prefix-r (Reload config) or prefix-U (Update plugins) to install plugins!'"
+
 # List of plugins
 set -g @plugin 'tmux-plugins/tmux-sensible'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 set -g @plugin 'tmux-plugins/tmux-yank'
-
-# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-run "$HOME/.tmux/plugins/tpm/tpm"
 
 # tmux-resurrect
 bind C-s run-shell -b "$HOME/.tmux/plugins/tmux-resurrect/scripts/save.sh"
