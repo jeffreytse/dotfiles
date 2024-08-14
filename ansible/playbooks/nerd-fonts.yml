@@ -15,8 +15,6 @@
           font-hack-nerd-font
         )
 
-        brew tap homebrew/cask-fonts
-
         for font in "${fonts[@]}"; do
           brew install --cask "$font"
         done
