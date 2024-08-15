@@ -1,0 +1,18 @@
+---
+- name: Configure Noto CJK fonts
+  hosts: localhost
+
+  tasks:
+    ###########################
+    # Noto CJK Fonts
+    # Patches Chinese, Japanese and Korean fonts
+    ###########################
+    - name: MacOS => install noto CJK fonts
+      community.general.homebrew:
+        name: font-noto-sans-cjk
+
+    - name: Ubuntu => Install noto CJK fonts
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: fonts-noto-cjk
+        state: latest

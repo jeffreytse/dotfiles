@@ -35,6 +35,9 @@
 - import_playbook: playbooks/nerd-fonts.yml
   tags: [nerd-fonts]
 
+- import_playbook: playbooks/noto-cjk-fonts.yml
+  tags: [noto-cjk-fonts]
+
 - import_playbook: playbooks/mycli.yml
   tags: [mycli]
 
