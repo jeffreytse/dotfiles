@@ -7,7 +7,7 @@
     # Nerd Fonts
     # Patches developer targeted fonts with a high number of glyphs (icons).
     ###########################
-    - name: MacOS => install docker server
+    - name: MacOS => install nerd fonts
       when: ansible_distribution == 'MacOSX'
       ansible.builtin.shell: |
         declare -a fonts=(
@@ -20,7 +20,7 @@
         done
       become: true
 
-    - name: Install nerd fonts
+    - name: Ubuntu => Install nerd fonts
       when: ansible_distribution == 'Ubuntu'
       ansible.builtin.shell: |
         declare -a fonts=(
