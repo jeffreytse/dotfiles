@@ -178,7 +178,14 @@ config.keys = {
 
 -- Font settings
 -- Needs to install nerd fonts later
-config.font = wezterm.font('Hack Nerd Font')
+config.font = wezterm.font_with_fallback {
+  'Hack Nerd Font',   -- Glyphs (icons)
+  'Noto Sans CJK SC', -- Simple Chinese
+  'Noto Sans CJK TC', -- Traditional Chinese
+  'Noto Sans CJK HK', -- Traditional Chinese (HK)
+  'Noto Sans CJK JP', -- Japanese
+  'Noto Sans CJK KR', -- Korean
+}
 config.font_size = 12.0 -- [12.0]
 
 -- Appearance settings
