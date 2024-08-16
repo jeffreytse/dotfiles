@@ -8,6 +8,7 @@
     # Patches Chinese, Japanese and Korean fonts
     ###########################
     - name: MacOS => install noto CJK fonts
+      when: ansible_distribution == 'MacOSX'
       community.general.homebrew:
         name: font-noto-sans-cjk
 
