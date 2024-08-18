@@ -307,3 +307,13 @@
         name: tree
         state: latest
       become: true
+
+    ###########################
+    # eza
+    # A modern alternative to ls
+    # https://github.com/eza-community/eza
+    ###########################
+    - name: All => Install eza
+      community.general.cargo:
+        name: eza
+        locked: true
