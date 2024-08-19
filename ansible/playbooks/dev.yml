@@ -309,6 +309,16 @@
       become: true
 
     ###########################
+    # exa
+    # A modern replacement for 'ls'
+    # https://github.com/ogham/exa
+    ###########################
+    - name: All => Install exa
+      community.general.cargo:
+        name: exa
+        locked: true
+
+    ###########################
     # eza
     # A modern alternative to ls
     # https://github.com/eza-community/eza
