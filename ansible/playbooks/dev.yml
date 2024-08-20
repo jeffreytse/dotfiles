@@ -139,6 +139,18 @@
         locked: true
 
     ###########################
+    # cloc
+    # Counts blank lines, comment lines, and physical lines of source code
+    # in many programming languages.
+    #
+    # https://github.com/AlDanial/cloc
+    ###########################
+    - name: All => install cloc
+      community.general.npm:
+        name: cloc
+        global: true
+
+    ###########################
     # tokei
     # Count your code, quickly
     ###########################
