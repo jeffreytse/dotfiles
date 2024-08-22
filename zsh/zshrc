@@ -258,7 +258,10 @@ export PATH="$PATH:$(asdf where perl)/bin"
 export PATH="$PATH:$HOME/.local/bin"
 
 # java home
-export JAVA_HOME="$(asdf where java)"
+SET_JAVA_HOME_SCRIPT="${ASDF_DIR}/plugins/java/set-java-home.zsh"
+if [[ -f "${SET_JAVA_HOME_SCRIPT}" ]]; then
+  source "${SET_JAVA_HOME_SCRIPT}"
+fi
 
 # pnpm
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
