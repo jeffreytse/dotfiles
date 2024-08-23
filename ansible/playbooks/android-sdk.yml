@@ -1,0 +1,54 @@
+---
+- name: Configure Android SDK
+  hosts: localhost
+
+  ###########################
+  # Android SDK Manager
+  # https://developer.android.com/studio/command-line/sdkmanager
+  ###########################
+  #
+  # sdkmanager "platforms;android-33"
+  # sdkmanager "platform-tools"
+  # sdkmanager "build-tools;33.0.2"
+  # sdkmanager emulator
+  # sdkmanager "system-images;android-33;google_apis;x86_64"
+  # sdkmanager --licenses
+  #
+
+  vars:
+    android_sdk_root: '/usr/local/share/android-sdk'
+
+  tasks:
+    - name: Create Android command-line tools' directory
+      ansible.builtin.file:
+        path: '{{ android_sdk_root }}/cmdline-tools'
+        state: directory
+        mode: 0755
+      become: true
+
+    ###########################
+    # Android Command-line Tools
+    # https://developer.android.com/studio#command-line-tools-only
+    ###########################
+    - name: MacOS => install command-line tools
+      when: ansible_distribution == 'MacOSX'
+      ansible.builtin.unarchive:
+        src: 'https://dl.google.com/android/repository/commandlinetools-mac-11076708_latest.zip'
+        dest: '{{ android_sdk_root }}/cmdline-tools'
+        remote_src: yes
+      become: true
+
+    - name: Linux => install command-line tools
+      when: ansible_distribution != 'MacOSX'
+      ansible.builtin.unarchive:
+        src: 'https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip'
+        dest: '{{ android_sdk_root }}/cmdline-tools'
+        remote_src: yes
+      become: true
+
+    - name: Rename command-line tools directory to latest
+      ansible.builtin.shell: |
+        cd {{ android_sdk_root }}/cmdline-tools
+        rm -rf latest
+        mv -f cmdline-tools latest
+      become: true
