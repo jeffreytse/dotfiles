@@ -231,7 +231,7 @@ Plug 'machakann/vim-sandwich'
 Plug 'github/copilot.vim'
 Plug 'zbirenbaum/copilot.lua'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
+Plug 'CopilotC-Nvim/CopilotChat.nvim'
 
 " --- Markdown / Writting ---
 Plug 'iamcco/markdown-preview.nvim', {'do': 'cd app && yarn install'}
