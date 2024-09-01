@@ -339,3 +339,14 @@
       community.general.cargo:
         name: eza
         locked: true
+
+    ###########################
+    # sd
+    # Intuitive find & replace CLI (sed alternative)
+    # https://github.com/chmln/sd
+    # #########################
+    - name: Install sd
+      community.general.cargo:
+        name: sd
+        locked: true
+
