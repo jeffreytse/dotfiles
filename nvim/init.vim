@@ -338,6 +338,8 @@ let g:coc_global_extensions = [
       \ 'coc-java',
       \ 'coc-java-debug',
       \ 'coc-omnisharp',
+      \ 'coc-rls',
+      \ 'coc-rust-analyzer',
       \ 'coc-tag',
       \ 'coc-word',
       \ 'coc-emoji',
