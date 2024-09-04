@@ -90,3 +90,7 @@
     - name: Install pynvim (support `pyx` command)
       ansible.builtin.pip:
         name: pynvim
+
+    - name: Install autopep8 (support `autopep8` command for python formatter)
+      ansible.builtin.pip:
+        name: autopep8
