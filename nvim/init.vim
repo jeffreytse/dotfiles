@@ -220,6 +220,7 @@ Plug 'KabbAmine/vCoolor.vim'            " Simple color selector/picker plugin fo
 Plug 'kkoomen/vim-doge'                 " Generate proper code documentation skeletons with a single keypress
 Plug 'OrangeT/vim-csharp'               " Support for CSharp files
 Plug 'vim-test/vim-test'                " Support running tests
+Plug 'norcalli/nvim-colorizer.lua'      " Colorize color codes in file
 
 " Complete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}

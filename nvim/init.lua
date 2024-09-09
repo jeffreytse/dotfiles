@@ -1,4 +1,6 @@
+-----------------------------------
 -- Plugin copilot-chat settings.
+-----------------------------------
 
 require("CopilotChat").setup {
   debug = true, -- Enable debugging
@@ -17,3 +19,10 @@ require("CopilotChat").setup {
     }
   }
 }
+
+-----------------------------------
+-- Colorizer
+-----------------------------------
+
+require'colorizer'.setup()
+
