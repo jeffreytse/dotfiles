@@ -113,9 +113,6 @@ set foldmethod=marker   " Enable folding (shortcut za)
 " Leader
 let mapleader = ' '
 
-" Set Paste mode toggle
-set pastetoggle=<F12>
-
 " .sh file
 function HeaderBash()
   call setline(1, "#!/usr/bin/env bash")
