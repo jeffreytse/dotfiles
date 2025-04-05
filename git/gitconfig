@@ -18,7 +18,7 @@
 	ff = yes
 [merge]
 	ff = no
-	conflictstyle = diff3
+	conflictstyle = zdiff3
 [init]
 	defaultBranch = main
 [interactive]
