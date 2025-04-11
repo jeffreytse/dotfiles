@@ -350,3 +350,19 @@
         name: sd
         locked: true
 
+    ###########################
+    # cmake
+    # Cross-platform family of tools designed to build, test and package
+    # software
+    # #########################
+    - name: MacOS => install cmake
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: cmake
+
+    - name: Ubuntu => install cmake
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: cmake
+        state: latest
+      become: true
