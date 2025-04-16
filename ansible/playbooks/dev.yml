@@ -351,6 +351,14 @@
         locked: true
 
     ###########################
+    # fx
+    # Terminal JSON viewer & processor
+    # https://github.com/antonmedv/fx
+    # #########################
+    - name: All => install fx
+      ansible.builtin.shell: go install github.com/antonmedv/fx@latest
+
+    ###########################
     # cmake
     # Cross-platform family of tools designed to build, test and package
     # software
