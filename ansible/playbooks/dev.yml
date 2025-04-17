@@ -194,6 +194,18 @@
       become: true
 
     ###########################
+    # yazi
+    # 💥 Blazing fast terminal file manager written in Rust, based on async I/O.
+    # https://github.com/sxyazi/yazi
+    ###########################
+    - name: All => install yazi
+      community.general.cargo:
+        name:
+          - yazi-fm
+          - yazi-cli
+        locked: true
+
+    ###########################
     # entr
     # Run arbitrary commands when files change
     # https://github.com/eradman/entr
