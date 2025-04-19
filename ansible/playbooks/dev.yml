@@ -386,3 +386,11 @@
         name: cmake
         state: latest
       become: true
+
+    ###########################
+    # dive
+    # A tool for exploring each layer in a docker image
+    # https://github.com/wagoodman/dive
+    # #########################
+    - name: All => install dive
+      ansible.builtin.shell: go install github.com/wagoodman/dive@latest
