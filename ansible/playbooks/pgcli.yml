@@ -1,0 +1,24 @@
+- name: Configure pgcli
+  hosts: localhost
+
+  tasks:
+    # Fix the issue `ImportError: no pq wrapper available.`
+    # pipx doesn't install the dependency: psycopg2-binary
+    # https://github.com/dbcli/pgcli/issues/1413
+    - name: Install pgcli
+      ansible.builtin.shell: |
+        pipx install pgcli
+        pipx inject pgcli psycopg_binary
+
+    - name: Create pgcli config directory
+      ansible.builtin.file:
+        path: '{{ ansible_env.HOME }}/.config/pgcli'
+        state: directory
+        mode: 0755
+
+    - name: Link config
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../pgcli/config'
+        dest: '{{ ansible_env.HOME }}/.config/pgcli/config'
+        state: link
+        force: true
