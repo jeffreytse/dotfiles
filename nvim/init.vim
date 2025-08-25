@@ -227,7 +227,6 @@ Plug 'machakann/vim-sandwich'
 
 "-- Copilot ---
 Plug 'github/copilot.vim'
-Plug 'zbirenbaum/copilot.lua'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'CopilotC-Nvim/CopilotChat.nvim'
 
