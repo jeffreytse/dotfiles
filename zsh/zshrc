@@ -1,14 +1,22 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 #############################
 # Shell Options
 #############################
+# Set various options. See `man zshoptions` for a list of available options.
 
 #== History ==
 #
 # Append history to the history file (no overwriting)
 setopt appendhistory
+# Treat the '!' character specially during expansion
+#setopt bang_hist
+# Add a bit more data (timestamp in unix epoch time and elapsed time of the command)
+setopt extended_history
 # Share history across terminals
 setopt sharehistory
 # Immediately append to the history file, not just when a term is killed
@@ -24,6 +32,13 @@ setopt histignorespace
 setopt histignorealldups
 # Add a bit more data (timestamp in unix epoch time and elapsed time of the command)
 # setopt extended_history
+# When searching the history, do not display duplicated entries
+setopt hist_find_no_dups
+# When saving the history file, remove duplicated entries, keeping only the most
+# recent entry for each command
+setopt hist_save_no_dups
+# Don't execute immediately upon history expansion
+setopt hist_verify
 
 #== Directory ==
 #
@@ -75,6 +90,13 @@ setopt longlistjobs
 setopt multios
 # Use vi key bindings in ZSH
 # setopt vi
+
+#############################
+# Asdf Version Manager
+#############################
+source $HOME/.asdf/asdf.sh
+export PATH="${ASDF_DIR:-$HOME/.asdf}/shims:$PATH"
+fpath=(${ASDF_DIR:-~/.asdf}/completions $fpath)
 
 #############################
 # Zinit Plugin Manager
@@ -182,7 +204,9 @@ if type brew &>/dev/null; then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 fi
 
-# Completion
+# Load custom shell completions; must happen before sourcing oh-my-zsh.sh
+# Custom completions are placed in the ~/.oh-my-zsh/custom/completions folder
+fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/completions
 autoload -U promptinit && promptinit
 autoload -U compinit compdef && compinit
 
@@ -204,6 +228,11 @@ export SAVEHIST=100000
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+# This needs to be set for xclip, GUI emacs etc to work correctly; it informs
+# them which X server to talk to. This should be set by default if everything is
+# working correctly, but life is mean so sometimes it isn't.
+export DISPLAY=":0"
+
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
 #   export EDITOR='vim'
@@ -221,10 +250,6 @@ export LANG=en_US.UTF-8
 export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 
-# asdf-vm
-source $HOME/.asdf/asdf.sh
-fpath=(${ASDF_DIR}/completions $fpath)
-
 # snap bin for ubuntu
 if [ -d "/snap/bin" ]; then
   export PATH="$PATH:/snap/bin"
@@ -232,36 +257,6 @@ fi
 
 # fzf bin
 export FZF_BASE="$(asdf where fzf)"
-
-# composor bin
-export PATH="$PATH:$(asdf where php)/.composer/vendor/bin"
-
-# python bin
-export PATH="$PATH:$(asdf where python)/bin"
-
-# golang bin
-export PATH="$PATH:$(asdf where golang)/packages/bin"
-
-# rust bin
-export PATH="$PATH:$(asdf where rust)/bin"
-
-# dotnet bin
-export PATH="$PATH:$(asdf where dotnet-core)"
-
-# dotnet tools
-export PATH="$PATH:$HOME/.dotnet/tools"
-
-# perl bin
-export PATH="$PATH:$(asdf where perl)/bin"
-
-# Others
-export PATH="$PATH:$HOME/.local/bin"
-
-# java home
-SET_JAVA_HOME_SCRIPT="${ASDF_DIR}/plugins/java/set-java-home.zsh"
-if [[ -f "${SET_JAVA_HOME_SCRIPT}" ]]; then
-  source "${SET_JAVA_HOME_SCRIPT}"
-fi
 
 # pnpm
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
@@ -271,14 +266,18 @@ case ":$PATH:" in
 esac
 
 # android
+# 1. Download cmdline tools from https://developer.android.com/studio#command-line-tools-only
+# 2. Unzip to /usr/local/share/android-sdk/cmdline-tools/latest/
 export ANDROID_HOME=/usr/local/share/android-sdk
 export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
 export ANDROID_NDK_HOME=/usr/local/share/android-ndk
 
 export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Others
+export PATH="$PATH:$HOME/.local/bin"
 
 # Set default editor
 export VISUAL="$(command -v nvim)"
