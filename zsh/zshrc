@@ -1,3 +1,7 @@
+# This file is sourced by zsh for interactive shells. It should contain commands
+# that should affect the behavior of interactive shells, such as aliases,
+# functions, shell options, and key bindings.
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -164,6 +168,7 @@ zinit light agkozak/zsh-z
 
 zinit light zsh-users/zsh-history-substring-search
 zinit light zsh-users/zsh-autosuggestions
+# zinit light zsh-users/zsh-syntax-highlighting
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 zinit light b4b4r07/zplug-doctor
@@ -214,74 +219,7 @@ autoload -U compinit compdef && compinit
 # Common Environment Vars
 #############################
 
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# History
-export HISTFILE=$HOME/.zsh_history
-export HISTSIZE=100000
-export SAVEHIST=100000
-#export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
-
-# You may need to manually set your language environment
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-
-# This needs to be set for xclip, GUI emacs etc to work correctly; it informs
-# them which X server to talk to. This should be set by default if everything is
-# working correctly, but life is mean so sometimes it isn't.
-export DISPLAY=":0"
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# unified XDG_DATA_HOME and XDG_CONFIG_HOME
-export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
-
-# snap bin for ubuntu
-if [ -d "/snap/bin" ]; then
-  export PATH="$PATH:/snap/bin"
-fi
-
-# fzf bin
 export FZF_BASE="$(asdf where fzf)"
-
-# pnpm
-export PNPM_HOME="$XDG_DATA_HOME/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
-# android
-# 1. Download cmdline tools from https://developer.android.com/studio#command-line-tools-only
-# 2. Unzip to /usr/local/share/android-sdk/cmdline-tools/latest/
-export ANDROID_HOME=/usr/local/share/android-sdk
-export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
-export ANDROID_NDK_HOME=/usr/local/share/android-ndk
-
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-
-# Others
-export PATH="$PATH:$HOME/.local/bin"
-
-# Set default editor
-export VISUAL="$(command -v nvim)"
-export EDITOR="$VISUAL"
 
 #############################
 # Personal Alias
@@ -307,22 +245,5 @@ eval $(thefuck --alias)
 eval "$(starship init zsh)"
 
 eval "$(z init zsh)"
-
-# kubectl auto completion
-if command -v kubectl &>/dev/null; then
-  source <(kubectl completion zsh)
-fi
-
-# Clean filesystem user watches
-function fs-watcher-clean() {
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        sudo sysctl -w kern.maxfiles=524288
-        sudo sysctl -w kern.maxfilesperproc=524288
-    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        sudo sysctl -n -w fs.inotify.max_queued_events=524288
-        sudo sysctl -n -w fs.inotify.max_user_instances=512
-        sudo sysctl -n -w fs.inotify.max_user_watches=524288
-    fi
-}
 
 # Everything else will be loaded by zshenv (autoload) as this file is loaded in a non-interactive session

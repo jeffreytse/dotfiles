@@ -1,0 +1,35 @@
+# This file is sourced very first on all invocations of the Z shell, whether
+# login or not. It should only contain minimal environment settings (e.g. PATH,
+# LANG), not aliases or function.
+#
+# The order of sourcing is:
+# .zshenv → .zprofile → .zshrc → .zlogin → .zlogout
+
+# You may need to manually set your language environment
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# Unified XDG_DATA_HOME and XDG_CONFIG_HOME
+export XDG_DATA_HOME=${XDG_DATA_HOME:="$HOME/.local/share"}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# pnpm
+export PNPM_HOME="$XDG_DATA_HOME/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+# android
+# 1. Download cmdline tools from https://developer.android.com/studio#command-line-tools-only
+# 2. Unzip to /usr/local/share/android-sdk/cmdline-tools/latest/
+export ANDROID_HOME=/usr/local/share/android-sdk
+export ANDROID_SDK_ROOT=/usr/local/share/android-sdk
+export ANDROID_NDK_HOME=/usr/local/share/android-ndk
+
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# Default editors
+export VISUAL="$(command -v nvim)"
+export EDITOR="$VISUAL"

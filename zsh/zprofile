@@ -1,0 +1,46 @@
+# This file is sourced on login shells. It should contain commands that should
+# affect the shell's behavior for login shells, such as commands that should be
+# run once at login.
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# History
+export HISTFILE=$HOME/.zsh_history
+export HISTSIZE=100000
+export SAVEHIST=100000
+#export WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
+# This needs to be set for xclip, GUI emacs etc to work correctly; it informs
+# them which X server to talk to. This should be set by default if everything is
+# working correctly, but life is mean so sometimes it isn't.
+export DISPLAY=":0"
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+# snap bin for ubuntu
+if [ -d "/snap/bin" ]; then
+  export PATH="$PATH:/snap/bin"
+fi
+
+# Clean filesystem user watches
+function fs-watcher-clean() {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        sudo sysctl -w kern.maxfiles=524288
+        sudo sysctl -w kern.maxfilesperproc=524288
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sudo sysctl -n -w fs.inotify.max_queued_events=524288
+        sudo sysctl -n -w fs.inotify.max_user_instances=512
+        sudo sysctl -n -w fs.inotify.max_user_watches=524288
+    fi
+}
