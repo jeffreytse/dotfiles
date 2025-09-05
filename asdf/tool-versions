@@ -12,10 +12,11 @@ groovy 3.0.13
 rust 1.84.1
 tomcat 9.0.75
 pipx 1.6.0
-pnpm 9.12.3
+pnpm 10.14.0
 fzf 0.42.0
 lua 5.4.7
 awscli 2.17.32
 kubectl 1.31.0
 spring-boot 3.3.3
 bun 1.2.8
+uv 0.8.12
