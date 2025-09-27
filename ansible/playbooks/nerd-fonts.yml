@@ -18,7 +18,6 @@
         for font in "${fonts[@]}"; do
           brew install --cask "$font"
         done
-      become: true
 
     - name: Ubuntu => Install nerd fonts
       when: ansible_distribution == 'Ubuntu'
