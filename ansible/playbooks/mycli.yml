@@ -1,6 +1,12 @@
 - name: Configure mycli
   hosts: localhost
 
+  vars:
+    asdf_home: '{{ ansible_env.HOME }}/.asdf'
+
+  environment:
+    PATH: "{{ asdf_home }}/bin:{{ asdf_home }}/shims:{{ ansible_env.PATH }}"
+
   tasks:
     - name: Install mycli
       ansible.builtin.command: pipx install mycli

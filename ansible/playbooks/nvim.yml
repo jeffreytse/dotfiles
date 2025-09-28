@@ -2,6 +2,12 @@
 - name: Configure nvim
   hosts: localhost
 
+  vars:
+    asdf_home: '{{ ansible_env.HOME }}/.asdf'
+
+  environment:
+    PATH: "{{ asdf_home }}/bin:{{ asdf_home }}/shims:{{ ansible_env.PATH }}"
+
   tasks:
     - name: MacOS => install neovim
       when: ansible_distribution == 'MacOSX'
@@ -64,7 +70,7 @@
 
     - name: Install vim-plug
       ansible.builtin.shell: >
-        curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs
+        curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
           https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
     - name: Create a directory for lombok.jar
