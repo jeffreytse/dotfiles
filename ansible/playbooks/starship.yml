@@ -3,15 +3,6 @@
   hosts: localhost
 
   tasks:
-    - name: Create a directory `/usr/local/bin`
-      when: not ansible_check_mode
-      ansible.builtin.file:
-        path: '/usr/local/bin'
-        state: directory
-        mode: 0777
-        recurse: true
-      become: true
-
     - name: Install starship
       ansible.builtin.shell:
         cmd: 'curl -sS https://starship.rs/install.sh | sh -s -- -f'
