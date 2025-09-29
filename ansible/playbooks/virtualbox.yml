@@ -8,4 +8,4 @@
       community.general.homebrew_cask:
         name:
           - virtualbox
-          - virtualbox-extension-pack
+        sudo_password: "{{ ansible_become_pass }}"

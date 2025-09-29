@@ -38,8 +38,9 @@
 
     - name: MacOS => install basictex as pandoc PDF convertor
       when: ansible_distribution == 'MacOSX'
-      community.general.homebrew:
+      community.general.homebrew_cask:
         name: basictex
+        sudo_password: "{{ ansible_become_pass }}"
 
     ###########################
     # calibre (ebook-convert)
