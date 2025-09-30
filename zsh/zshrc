@@ -98,9 +98,9 @@ setopt multios
 #############################
 # Asdf Version Manager
 #############################
-source $HOME/.asdf/asdf.sh
-export PATH="${ASDF_DIR:-$HOME/.asdf}/shims:$PATH"
-fpath=(${ASDF_DIR:-~/.asdf}/completions $fpath)
+
+source $(brew --prefix asdf)/libexec/asdf.sh
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 
 #############################
 # Zinit Plugin Manager
@@ -212,8 +212,12 @@ fi
 # Load custom shell completions; must happen before sourcing oh-my-zsh.sh
 # Custom completions are placed in the ~/.oh-my-zsh/custom/completions folder
 fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/completions
-autoload -U promptinit && promptinit
-autoload -U compinit compdef && compinit
+
+# Initialize prompt system
+autoload -Uz promptinit && promptinit
+
+# Initialize completion system
+autoload -Uz compinit && compinit
 
 #############################
 # Common Environment Vars

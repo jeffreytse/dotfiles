@@ -6,19 +6,15 @@
     asdf_home: '{{ ansible_env.HOME }}/.asdf'
 
   environment:
-    PATH: "{{ asdf_home }}/bin:{{ asdf_home }}/shims:{{ ansible_env.PATH }}"
-    ASDF_DIR: "{{ asdf_home }}"
-    ASDF_DATA_DIR: "{{ asdf_home }}"
+    PATH: '{{ asdf_home }}/bin:{{ asdf_home }}/shims:{{ ansible_env.PATH }}'
+    ASDF_DIR: '{{ asdf_home }}'
+    ASDF_DATA_DIR: '{{ asdf_home }}'
 
   tasks:
-    - name: Clone asdf
-      ansible.builtin.git:
-        repo: https://github.com/asdf-vm/asdf.git
-        dest: '{{ asdf_home }}'
-        clone: true
-        update: true
-        force: true
-        depth: 1
+    - name: MacOS => install asdf
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: asdf
 
     - name: Link .asdfrc
       ansible.builtin.file:
@@ -34,12 +30,17 @@
         state: link
         force: true
 
-    - name: Install plugins according to .tool-version
+    - name: Ensure asdf is sourced in .zshrc
+      ansible.builtin.shell: |
+        mkdir -p "${ASDF_DATA_DIR:-$HOME/.asdf}/completions"
+        asdf completion zsh > "${ASDF_DATA_DIR:-$HOME/.asdf}/completions/_asdf"
+
+    - name: Install plugins according to .tool-versions
       ansible.builtin.shell: |
         for plugin in $(cat $HOME/.tool-versions | sed s/' .*$'//); do
-          asdf plugin-list | grep $plugin > /dev/null 2>&1
+          asdf plugin list | grep $plugin > /dev/null 2>&1
           if [ $? -ne 0 ]; then
-            asdf plugin-add $plugin
+            asdf plugin add $plugin
           fi
         done
 
@@ -57,7 +58,7 @@
           - oniguruma             # PHP requires oniguruma to process mbstring and regex
           - libzip                # PHP requires libzip
           - openssl               # PHP requires openssl to process https and security
-          - cmake
+          - cmake                 # PHP requires cmake to build extensions
         state: present
 
     - name: Ubuntu => Install dependencies for tools
