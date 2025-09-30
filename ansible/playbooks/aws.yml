@@ -1,0 +1,33 @@
+---
+- name: Configure AWS CLI
+  hosts: localhost
+
+  tasks:
+    ###########################
+    # aws cli
+    # Universal Command Line Interface for Amazon Web Services.
+    ###########################
+    - name: MacOS => install aws cli
+      when: ansible_distribution == 'MacOSX'
+      ansible.builtin.shell: |
+        $TARGET="/tmp/AWSCLIV2.pkg"
+        curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o $TARGET
+        sudo installer -pkg $TARGET -target /
+        rm -f $TARGET
+      become: true
+
+    ###########################
+    # granted
+    # The easiest way to access AWS.
+    # https://github.com/fwdcloudsec/granted
+    ############################
+    - name: MacOS => brew tap common-fate/granted
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_tap:
+        name: common-fate/granted
+
+    - name: MacOS => install granted
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: granted
+

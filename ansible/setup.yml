@@ -50,6 +50,9 @@
 - import_playbook: playbooks/virtualbox.yml
   tags: [virtualbox]
 
+- import_playbook: playbooks/aws.yml
+  tags: [aws]
+
 - import_playbook: playbooks/dev.yml
   tags: [dev]
 
