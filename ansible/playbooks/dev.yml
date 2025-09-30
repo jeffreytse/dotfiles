@@ -337,6 +337,31 @@
       ansible.builtin.command: pip install diagrams
 
     ###########################
+    # zoxide
+    # A smarter cd command. Supports all major shells.
+    ###########################
+    - name: Install zoxide
+      community.general.cargo:
+        name: zoxide
+        locked: true
+
+    ###########################
+    # ripgrep
+    # A battle-tested alternative for grep
+    ###########################
+    - name: MacOS => install ripgrep
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: ripgrep
+
+    - name: Ubuntu => install ripgrep
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: ripgrep
+        state: latest
+      become: true
+
+    ###########################
     # tree
     # A recursive directory listing command or program that produces a
     # depth-indented listing of files.
