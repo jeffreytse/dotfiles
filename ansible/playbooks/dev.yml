@@ -468,6 +468,15 @@
         bash -c "$(curl -sLo- https://superfile.dev/install.sh)"
 
     ###########################
+    # totp-cli
+    # Authy/Google Authenticator like TOTP CLI tool written in Go.
+    # https://github.com/yitsushi/totp-cli
+    ###########################
+    - name: All => install totp-cli
+      ansible.builtin.shell: |
+        go install github.com/yitsushi/totp-cli@latest
+
+    ###########################
     # opencode
     # AI coding agent, built for the terminal.
     # https://github.com/sst/opencode
