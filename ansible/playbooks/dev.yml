@@ -459,6 +459,15 @@
         broot --install
 
     ###########################
+    # superfile
+    # Pretty fancy and modern terminal file manager
+    # https://github.com/yorukot/superfile
+    ###########################
+    - name: All => install superfile
+      ansible.builtin.shell: |
+        bash -c "$(curl -sLo- https://superfile.dev/install.sh)"
+
+    ###########################
     # opencode
     # AI coding agent, built for the terminal.
     # https://github.com/sst/opencode
