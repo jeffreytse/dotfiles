@@ -5,6 +5,11 @@
   vars:
     asdf_home: '{{ ansible_env.HOME }}/.asdf'
 
+  environment:
+    PATH: "{{ asdf_home }}/bin:{{ asdf_home }}/shims:{{ ansible_env.PATH }}"
+    ASDF_DIR: "{{ asdf_home }}"
+    ASDF_DATA_DIR: "{{ asdf_home }}"
+
   tasks:
     - name: Clone asdf
       ansible.builtin.git:
@@ -38,5 +43,51 @@
           fi
         done
 
-    - name: Install tools listed in .tool-version
+    - name: MacOS => Install dependencies for tools
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name:
+          - autoconf              # PHP requires autoconf >= 2.68
+          - bison                 # PHP requires bison >= 3.0.0
+          - re2c                  # PHP requires re2c 1.0.3 to generate PHP lexers
+          - pkg-config            # PHP requires pkg-config
+          - gd                    # PHP requires gdlib >= 2.1.0
+          - libiconv              # PHP requires libiconv
+          - icu4c                 # PHP requires icu
+          - oniguruma             # PHP requires oniguruma to process mbstring and regex
+          - libzip                # PHP requires libzip
+          - openssl               # PHP requires openssl to process https and security
+          - cmake
+        state: present
+
+    - name: Ubuntu => Install dependencies for tools
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name:
+          - autoconf              # Used to generate configuration scripts
+          - bison                 # Used to generate parsers
+          - re2c                  # Used to generate lexical analyzers
+          - pkg-config            # Used to manage library and header file paths at compile time
+          - libgd-dev             # Image processing library development files
+          - libiconv-hook-dev     # Character set conversion library development files
+          - libicu-dev            # Unicode and international components development files
+          - libonig-dev           # Regular expression library (oniguruma) development files
+          - libzip-dev            # ZIP file handling library development files
+          - libssl-dev            # OpenSSL encryption library development files
+          - cmake                 # Cross-platform build system
+        state: latest
+      become: true
+
+    - name: MacOS => install PHP solely
+      when: ansible_distribution == 'MacOSX'
+      ansible.builtin.shell: |
+        php_with_version=$(cat ~/.tool-versions | grep php)
+        if [[ -n $php_with_version ]]; then
+          # Unable to find the wrapper "https"
+          # https://github.com/asdf-community/asdf-php/issues/163
+          export PHP_CONFIGURE_OPTIONS="--with-openssl=$(brew --prefix openssl) --with-iconv=$(brew --prefix libiconv)"
+          asdf install $php_with_version
+        fi
+
+    - name: Install tools listed in .tool-versions
       ansible.builtin.command: asdf install
