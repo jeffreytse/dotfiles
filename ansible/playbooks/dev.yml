@@ -338,7 +338,7 @@
     # A modern replacement for 'ls'
     # https://github.com/ogham/exa
     ###########################
-    - name: All => Install exa
+    - name: All => install exa
       community.general.cargo:
         name: exa
         locked: true
@@ -348,7 +348,7 @@
     # A modern alternative to ls
     # https://github.com/eza-community/eza
     ###########################
-    - name: All => Install eza
+    - name: All => install eza
       community.general.cargo:
         name: eza
         locked: true
@@ -358,7 +358,7 @@
     # Intuitive find & replace CLI (sed alternative)
     # https://github.com/chmln/sd
     # #########################
-    - name: Install sd
+    - name: All => install sd
       community.general.cargo:
         name: sd
         locked: true
