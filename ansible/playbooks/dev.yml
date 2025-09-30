@@ -368,7 +368,7 @@
     ###########################
     - name: MacOS => install tree
       when: ansible_distribution == 'MacOSX'
-      community.general.homebrew_cask:
+      community.general.homebrew:
         name: tree
 
     - name: Ubuntu => install tree
