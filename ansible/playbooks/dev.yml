@@ -433,3 +433,17 @@
     # #########################
     - name: All => install dive
       ansible.builtin.shell: go install github.com/wagoodman/dive@latest
+
+    ###########################
+    # broot
+    # A new way to see and navigate directory trees
+    ###########################
+    - name: All => install broot
+      community.general.cargo:
+        name: broot
+        locked: true
+
+    - name: Initialize broot
+      ansible.builtin.shell: |
+        asdf reshim
+        broot --install

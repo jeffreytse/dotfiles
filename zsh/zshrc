@@ -246,4 +246,7 @@ eval "$(starship init zsh)"
 
 eval "$(z init zsh)"
 
+# broot launcher to replace `cd` command
+source $HOME/.config/broot/launcher/bash/br
+
 # Everything else will be loaded by zshenv (autoload) as this file is loaded in a non-interactive session
