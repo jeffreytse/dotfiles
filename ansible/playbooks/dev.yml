@@ -265,7 +265,7 @@
     ###########################
     - name: MacOS => install gh
       when: ansible_distribution == 'MacOSX'
-      community.general.homebrew_cask:
+      community.general.homebrew:
         name: gh
 
     ###########################

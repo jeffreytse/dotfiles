@@ -278,7 +278,7 @@
 
     - name: MacOS => install speedtest
       when: ansible_distribution == 'MacOSX'
-      community.general.homebrew_cask:
+      community.general.homebrew:
         name: speedtest
 
     - name: Ubuntu => install speedtest script.deb.sh
@@ -325,7 +325,7 @@
     ###########################
     - name: MacOS => install graphviz
       when: ansible_distribution == 'MacOSX'
-      community.general.homebrew_cask:
+      community.general.homebrew:
         name: graphviz
 
     ###########################
@@ -336,6 +336,6 @@
     ###########################
     - name: MacOS => install httrack
       when: ansible_distribution == 'MacOSX'
-      community.general.homebrew_cask:
+      community.general.homebrew:
         name: httrack
 
