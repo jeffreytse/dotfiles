@@ -10,6 +10,16 @@
 
   tasks:
     ###########################
+    # openssh
+    # OpenSSH is a suite of secure networking utilities based on the Secure
+    # Shell (SSH) protocol
+    ###########################
+    - name: MacOS => install openssh
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: openssh
+
+    ###########################
     # nginx
     # Advanced Load Balancer, Web Server, & Reverse Proxy
     ###########################
