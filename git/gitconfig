@@ -9,6 +9,7 @@
 	excludesfile = ~/.gitignore
 	ignorecase = false
 	pager = delta
+	editor = nvim
 [github]
 	user = jeffreytse.mail@gmail.com
 [push]
