@@ -36,6 +36,16 @@
       become: true
 
     ###########################
+    # gnupg
+    # GNU privacy guard - a free PGP replacement
+    # https://www.gnupg.org/
+    ##########################
+    - name: MacOS => install gnupg
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: gnupg
+
+    ###########################
     # tig
     # Text-mode interface for git
     ###########################
