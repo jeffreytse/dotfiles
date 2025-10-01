@@ -55,6 +55,7 @@ function usage() {
   echo ""
   echo "--help   Show this message and exit"
   echo "--check  Run the playbook in check mode (default: false)"
+  echo "--password <password> Specify the become password"
   echo "--playbook <file> Specify the playbook to run (default: setup.yml)"
   exit 0
 }
@@ -65,24 +66,62 @@ playbook="setup.yml"
 # idiomatic parameter and option handling in sh
 while test $# -gt 0; do
   case "$1" in
-      --check) ANSIBLE_PLAYBOOK_ARGS+=("--check");;
-      --help) usage;;
-      --playbook)
-        playbook="$2"
-        if [ -z "$playbook" ]; then
-          echo "Error: --playbook requires a file argument."
-          exit 1
-        fi
-        shift
-        ;;
-      --*) echo "bad option $1";;
-        *) usage;;
+    --check)
+      ANSIBLE_PLAYBOOK_ARGS+=("--check")
+      # Add --diff to show details in check mode
+      ANSIBLE_PLAYBOOK_ARGS+=("--diff")
+      ;;
+    --help) usage;;
+    --playbook)
+      playbook="$2"
+      if [ -z "$playbook" ]; then
+        echo "Error: --playbook requires a file argument."
+        exit 1
+      fi
+      shift
+      ;;
+    --password)
+      password="$2"
+      shift
+      ;;
+    --*) echo "bad option $1";;
+      *) usage;;
   esac
   shift
 done
 
-read -s -p "BECOME password: " password
+# Handle become password
+if [ -z "$password" ] && [ -n "$ANSIBLE_BECOME_PASSWORD" ]; then
+  password="$ANSIBLE_BECOME_PASSWORD"
+fi
 
-cd ./ansible
+# Prompt for password if not provided and not in CI environment
+if [ -z "$CI" ] && [ -z "$password" ]; then
+  # Only prompt for password if in an interactive terminal
+  if [ -t 0 ]; then
+    read -s -p "BECOME password: " password
+    export ANSIBLE_BECOME_PASSWORD="$password"
+    echo
+  else
+    echo "Error: No become password provided in non-interactive terminal."
+    echo "Please set with argument --password or set with environment variable ANSIBLE_BECOME_PASSWORD."
+    exit 1
+  fi
+fi
+
+# Check if ansible directory exists
+if [ ! -d "./ansible" ]; then
+    echo "Error: './ansible' directory not found!"
+    exit 1
+fi
+
+cd ./ansible || exit 1
+
+# Check if playbook exists
+if [ ! -f "$playbook" ]; then
+    echo "Error: playbook file '$playbook' not found!"
+    exit 1
+fi
+
 ansible-galaxy collection install -r requirements.yml --upgrade
-ansible-playbook --ask-become-pass --extra-vars="ansible_become_pass='$password'" $playbook ${ANSIBLE_PLAYBOOK_ARGS[@]}
+ansible-playbook --extra-vars="ansible_become_pass='$password'" $playbook ${ANSIBLE_PLAYBOOK_ARGS[@]}
