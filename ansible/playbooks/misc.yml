@@ -289,12 +289,11 @@
 
     - name: Ubuntu => install speedtest script.deb.sh
       when: ansible_distribution == 'Ubuntu'
-      become: yes
-      become_method: su
       ansible.builtin.command:
         curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
       # Ignore sudo error in the test
-      ignore_errors: yes
+      become: true
+      ignore_errors: true
 
     - name: Ubuntu => install speedtest
       when: ansible_distribution == 'Ubuntu'
