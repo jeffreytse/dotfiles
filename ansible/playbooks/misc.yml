@@ -283,7 +283,9 @@
         name: teamookla/speedtest
 
     - name: MacOS => install speedtest
-      when: ansible_distribution == 'MacOSX'
+      when:
+        - ansible_distribution == 'MacOSX'
+        - not ansible_check_mode # speedtest is not available on GitHub runners
       community.general.homebrew:
         name: speedtest
 

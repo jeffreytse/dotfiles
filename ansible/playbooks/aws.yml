@@ -27,7 +27,8 @@
         name: common-fate/granted
 
     - name: MacOS => install granted
-      when: ansible_distribution == 'MacOSX'
+      when:
+        - ansible_distribution == 'MacOSX'
+        - not ansible_check_mode # granted is not available on GitHub runners
       community.general.homebrew:
         name: granted
-
