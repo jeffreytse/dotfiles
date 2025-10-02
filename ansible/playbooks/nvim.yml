@@ -90,13 +90,13 @@
         mode: 0775
 
     - name: Install neovim `python3` provider (Run :checkhealth provider)
-      ansible.builtin.pip:
-        name: neovim
+      ansible.builtin.shell: |
+        pip install --user neovim
 
     - name: Install pynvim (support `pyx` command)
-      ansible.builtin.pip:
-        name: pynvim
+      ansible.builtin.shell: |
+        pip install --user pynvim
 
     - name: Install autopep8 (support `autopep8` command for python formatter)
-      ansible.builtin.pip:
-        name: autopep8
+      ansible.builtin.shell: |
+        pip install autopep8
