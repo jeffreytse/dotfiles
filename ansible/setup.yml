@@ -56,6 +56,9 @@
 - import_playbook: playbooks/dev.yml
   tags: [dev]
 
+- import_playbook: playbooks/aria2.yml
+  tags: [aria2]
+
 - import_playbook: playbooks/misc.yml
   tags: [misc]
 
