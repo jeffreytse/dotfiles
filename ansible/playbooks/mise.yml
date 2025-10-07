@@ -1,0 +1,78 @@
+---
+- name: Configure mise
+  hosts: localhost
+
+  vars:
+    mise_home: '{{ ansible_env.HOME }}/.config/mise'
+
+  tasks:
+    - name: All => install mise
+      ansible.builtin.shell: |
+        curl https://mise.run | sh
+
+    - name: Link config.toml
+      ansible.builtin.file:
+        src: '{{ ansible_env.PWD }}/../../mise/config.toml'
+        dest: '{{ ansible_env.HOME }}/.config/mise/config.toml'
+        state: link
+        force: true
+
+    - name: Ensure mise is sourced in .zshrc
+      ansible.builtin.shell: |
+        mkdir -p "{{ mise_home }}/completions"
+        mise completion zsh > "{{ mise_home }}/completions/_mise"
+
+    - name: MacOS => Install dependencies for tools
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name:
+          - autoconf              # PHP requires autoconf >= 2.68
+          - bison                 # PHP requires bison >= 3.0.0
+          - re2c                  # PHP requires re2c 1.0.3 to generate PHP lexers
+          - pkg-config            # PHP requires pkg-config
+          - gd                    # PHP requires gdlib >= 2.1.0
+          - libiconv              # PHP requires libiconv
+          - icu4c                 # PHP requires icu
+          - oniguruma             # PHP requires oniguruma to process mbstring and regex
+          - libzip                # PHP requires libzip
+          - openssl               # PHP requires openssl to process https and security
+          - cmake                 # PHP requires cmake to build extensions
+        state: present
+
+    - name: Ubuntu => Install dependencies for tools
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name:
+          - autoconf              # Used to generate configuration scripts
+          - bison                 # Used to generate parsers
+          - re2c                  # Used to generate lexical analyzers
+          - pkg-config            # Used to manage library and header file paths at compile time
+          - libgd-dev             # Image processing library development files
+          - libiconv-hook-dev     # Character set conversion library development files
+          - libicu-dev            # Unicode and international components development files
+          - libonig-dev           # Regular expression library (oniguruma) development files
+          - libzip-dev            # ZIP file handling library development files
+          - libssl-dev            # OpenSSL encryption library development files
+          - cmake                 # Cross-platform build system
+        state: latest
+      become: true
+
+    - name: MacOS => install PHP solely
+      when: ansible_distribution == 'MacOSX'
+      ansible.builtin.shell: |
+        cd {{ mise_home }}
+        php_version=$(mise config get tools.php)
+        if [[ -n $php_version ]]; then
+          # Unable to find the wrapper "https"
+          # https://github.com/asdf-community/asdf-php/issues/163
+          #export PHP_CONFIGURE_OPTIONS="--with-openssl=$(brew --prefix openssl) --with-iconv=$(brew --prefix libiconv)"
+          # export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@3/lib/pkgconfig:$PKG_CONFIG_PATH"
+          export MISE_BACKENDS_PHP='vfox:mise-plugins/vfox-php'
+          mise plugin remove php
+          mise install php@$php_version
+        fi
+
+    - name: Install tools listed in .config/mise/config.toml
+      ansible.builtin.shell:
+        cd {{ mise_home }}
+        mise install

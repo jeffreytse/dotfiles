@@ -95,12 +95,15 @@ setopt multios
 # Use vi key bindings in ZSH
 # setopt vi
 
-#############################
-# Asdf Version Manager
-#############################
+##############################
+# mise Version Manager
+##############################
+eval "$(mise activate zsh)"
 
-source $(brew --prefix asdf)/libexec/asdf.sh
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+#############################
+# Common Environment Vars
+#############################
+export FZF_BASE="$HOME/.fzf"
 
 #############################
 # Zinit Plugin Manager
@@ -216,14 +219,8 @@ fpath+=${ZSH_CUSTOM:-${ZSH:-~/.oh-my-zsh}/custom}/completions
 # Initialize prompt system
 autoload -Uz promptinit && promptinit
 
-# Initialize completion system
-autoload -Uz compinit && compinit
-
-#############################
-# Common Environment Vars
-#############################
-
-export FZF_BASE="$(asdf where fzf)"
+# Enable shell completion features
+autoload -Uz compinit compdef && compinit
 
 #############################
 # Personal Alias
@@ -244,10 +241,19 @@ alias mux=tmuxinator
 
 test -e "${HOME}/.iterm3_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# mise completion
+eval "$(mise completion zsh)"
+
+# fzf
+[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
+
+# thefuck command
 eval $(thefuck --alias)
 
+# starship
 eval "$(starship init zsh)"
 
+# z
 eval "$(z init zsh)"
 
 # broot launcher to replace `cd` command
