@@ -79,8 +79,8 @@
     - name: Download the latest lombok.jar (https://projectlombok.org/)
       when: not ansible_check_mode
       ansible.builtin.get_url:
-        url: 'https://projectlombok.org/downloads/lombok-1.18.30.jar'
-        dest: '/usr/local/share/lombok/lombok-1.18.30.jar'
+        url: 'https://projectlombok.org/downloads/lombok-1.18.42.jar'
+        dest: '/usr/local/share/lombok/lombok-1.18.42.jar'
         mode: 0775
 
     - name: Install neovim `python3` provider (Run :checkhealth provider)
