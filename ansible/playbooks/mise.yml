@@ -10,6 +10,12 @@
       ansible.builtin.shell: |
         curl https://mise.run | sh
 
+    - name: Create mise config directory
+      ansible.builtin.file:
+        path: '{{ ansible_env.HOME }}/.config/mise'
+        state: directory
+        mode: 0755
+
     - name: Link config.toml
       ansible.builtin.file:
         src: '{{ ansible_env.PWD }}/../../mise/config.toml'
@@ -73,6 +79,6 @@
         fi
 
     - name: Install tools listed in .config/mise/config.toml
-      ansible.builtin.shell:
+      ansible.builtin.shell: |
         cd {{ mise_home }}
         mise install
