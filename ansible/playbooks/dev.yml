@@ -413,6 +413,20 @@
         locked: true
 
     ###########################
+    # fzf
+    # A command-line fuzzy finder
+    # https://github.com/junegunn/fzf
+    ###########################
+    - name: All => install fzf
+      ansible.builtin.git:
+        repo: https://github.com/junegunn/fzf.git
+        dest: '{{ ansible_env.HOME }}/.fzf'
+        clone: true
+        update: true
+        force: true
+        depth: 1
+
+    ###########################
     # sd
     # Intuitive find & replace CLI (sed alternative)
     # https://github.com/chmln/sd
