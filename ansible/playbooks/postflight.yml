@@ -3,6 +3,13 @@
   hosts: localhost
 
   tasks:
+    - name: Ubuntu => Remove useless packages, dependencies and their configuration files
+      when: ansible_distribution == 'Ubuntu'
+      ansible.builtin.apt:
+        autoclean: yes
+        autoremove: yes
+        purge: true
+
     - name: Reshim all packages installed by asdf version manager
       ansible.builtin.command:
         cmd: 'asdf reshim'
