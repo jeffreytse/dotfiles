@@ -2,9 +2,6 @@
 - name: Configure ansible
   hosts: localhost
 
-  vars:
-    asdf_home: '{{ ansible_env.HOME }}/.asdf'
-
   tasks:
     - name: Link .ansible.cfg
       ansible.builtin.file:
