@@ -12,6 +12,7 @@
       when: ansible_distribution == 'MacOSX'
       community.general.homebrew_cask:
         name: wez/wezterm/wezterm-nightly
+        install_options: force # Force re-installation even if the latest version is already installed
 
     - name: Link .wezterm.lua
       ansible.builtin.file:
