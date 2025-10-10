@@ -3,7 +3,14 @@
   hosts: localhost
 
   tasks:
-    - name: MacOS => homebrew upgrade all
+    - name: MacOS => homebrew upgrade all casks
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew_cask:
+        update_homebrew: true
+        upgrade_all: true
+        sudo_password: "{{ ansible_become_pass }}"
+
+    - name: MacOS => homebrew upgrade all formulas
       when: ansible_distribution == 'MacOSX'
       community.general.homebrew:
         update_homebrew: true
