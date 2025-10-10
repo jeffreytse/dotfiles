@@ -57,6 +57,7 @@ function usage() {
   echo "--check  Run the playbook in check mode (default: false)"
   echo "--password <password> Specify the become password"
   echo "--playbook <file> Specify the playbook to run (default: setup.yml)"
+  echo "--verbose  Increase verbosity of Ansible output"
   exit 0
 }
 
@@ -83,6 +84,9 @@ while test $# -gt 0; do
     --password)
       password="$2"
       shift
+      ;;
+    --verbose)
+      ANSIBLE_PLAYBOOK_ARGS+=("-v")
       ;;
     --*) echo "bad option $1";;
       *) usage;;
