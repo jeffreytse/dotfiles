@@ -16,6 +16,11 @@ export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:="$HOME/.config"}
 # User specific bin
 export PATH="$HOME/.local/bin:$PATH"
 
+# Homebrew bin
+if [[ -d "/opt/homebrew/bin" ]]; then
+  export PATH="/opt/homebrew/bin:$PATH"
+fi
+
 # pnpm
 export PNPM_HOME="$XDG_DATA_HOME/pnpm"
 export PATH="$PNPM_HOME:$PATH"
