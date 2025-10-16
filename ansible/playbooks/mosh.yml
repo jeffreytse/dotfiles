@@ -1,0 +1,43 @@
+---
+- name: Configure mosh
+  hosts: localhost
+
+  vars:
+    asdf_home: '{{ ansible_env.HOME }}/.asdf'
+
+  tasks:
+    - name: MacOS => install mosh
+      when: ansible_distribution == 'MacOSX'
+      community.general.homebrew:
+        name: mosh
+
+    - name: Ubuntu => install mosh
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: mosh
+        state: latest
+      become: true
+
+    - name: MacOS => ensure mosh is allowed in the firewall
+      when: ansible_distribution == 'MacOSX'
+      ansible.builtin.shell: |
+        # References:
+        # - https://github.com/mobile-shell/mosh/issues/237
+        # - https://gist.github.com/chrisdiana/e2e471f4451f5fa16c3b9ef28037c57a
+        alias fw='/usr/libexec/ApplicationFirewall/socketfilterfw'
+        MOSH_SERVER_PATH=$(which mosh-server)
+        # Turn the firewall off
+        fw --setglobalstate off
+        # Enable the firewall rules
+        fw --add $MOSH_SERVER_PATH
+        # Unblock the app
+        fw --unblockapp $MOSH_SERVER_PATH
+        # Turn the firewall back on
+        fw --setglobalstate on
+      become: true
+
+    - name: Ubuntu => ensure mosh is allowed in the firewall
+      when: ansible_distribution == 'Ubuntu'
+      ansible.builtin.shell: |
+        iptables -I INPUT 1 -p udp --dport 60000:61000 -j ACCEPT
+      become: true
