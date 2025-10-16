@@ -417,7 +417,7 @@
     # A command-line fuzzy finder
     # https://github.com/junegunn/fzf
     ###########################
-    - name: All => install fzf
+    - name: All => clone fzf repo
       ansible.builtin.git:
         repo: https://github.com/junegunn/fzf.git
         dest: '{{ ansible_env.HOME }}/.fzf'
@@ -425,6 +425,10 @@
         update: true
         force: true
         depth: 1
+
+    - name: All => install fzf (run install script)
+      ansible.builtin.shell: |
+        {{ ansible_env.HOME }}/.fzf/install
 
     ###########################
     # sd
