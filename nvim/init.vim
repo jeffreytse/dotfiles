@@ -358,14 +358,14 @@ let g:coc_global_extensions = [
       \ 'coc-stylelint',
       \ 'coc-markdownlint',
       \ 'coc-highlight',
-      \ 'coc-tailwindcss',
       \ 'coc-tabnine',
       \ 'coc-calc',
       \ 'coc-dictionary',
       \ 'coc-explorer',
       \ 'coc-cssmodules',
       \ 'coc-pyright',
-      \ 'coc-spell-checker'
+      \ 'coc-spell-checker',
+      \ '@yaegassy/coc-tailwindcss3'
       \ ]
 
 " Use <c-space> for trigger completion.
