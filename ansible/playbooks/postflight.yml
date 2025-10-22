@@ -8,7 +8,7 @@
       ansible.builtin.apt:
         autoclean: yes
         autoremove: yes
-        purge: true
+      become: true
 
     - name: Reshim all packages installed by asdf version manager
       ansible.builtin.command:
