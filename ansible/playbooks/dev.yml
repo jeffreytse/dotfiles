@@ -449,6 +449,15 @@
       ansible.builtin.shell: go install github.com/antonmedv/fx@latest
 
     ###########################
+    # yq
+    # A portable command-line YAML, JSON, XML, CSV, TOML and properties
+    # processor
+    # https://github.com/mikefarah/yq
+    # #########################
+    - name: All => install fx
+      ansible.builtin.shell: go install github.com/mikefarah/yq/v4@latest
+
+    ###########################
     # dive
     # A tool for exploring each layer in a docker image
     # https://github.com/wagoodman/dive
