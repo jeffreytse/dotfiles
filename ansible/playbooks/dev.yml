@@ -488,6 +488,15 @@
         go install github.com/yitsushi/totp-cli@latest
 
     ###########################
+    # copilot-cli
+    # GitHub Copilot CLI brings the power of Copilot coding agent directly to your terminal.
+    # https://github.com/github/copilot-cli
+    ###########################
+    - name: All => install copilot-cli
+      ansible.builtin.shell: |
+        pnpm install -g @github/copilot
+
+    ###########################
     # opencode
     # AI coding agent, built for the terminal.
     # https://github.com/sst/opencode
