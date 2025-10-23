@@ -56,6 +56,9 @@
 - import_playbook: playbooks/dev.yml
   tags: [dev]
 
+- import_playbook: playbooks/gh.yml
+  tags: [dev, gh]
+
 - import_playbook: playbooks/mosh.yml
   tags: [mosh]
 
