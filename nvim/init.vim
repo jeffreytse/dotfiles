@@ -350,6 +350,7 @@ let g:coc_global_extensions = [
       \ 'coc-pairs',
       \ 'coc-vimlsp',
       \ 'coc-phpls',
+      \ 'coc-powershell',
       \ 'coc-groovy',
       \ 'coc-yank',
       \ 'coc-git',
