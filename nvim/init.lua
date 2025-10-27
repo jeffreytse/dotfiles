@@ -20,9 +20,3 @@ require("CopilotChat").setup {
   }
 }
 
------------------------------------
--- Colorizer
------------------------------------
-
-require'colorizer'.setup()
-
