@@ -465,6 +465,15 @@
         bash -c "$(curl -sLo- https://superfile.dev/install.sh)"
 
     ###########################
+    # osc
+    # Access the system clipboard from anywhere using the ANSI OSC52 sequence
+    # https://github.com/theimpostor/osc
+    ###########################
+    - name: All => install osc
+      ansible.builtin.shell: |
+        go install github.com/theimpostor/osc@latest
+
+    ###########################
     # totp-cli
     # Authy/Google Authenticator like TOTP CLI tool written in Go.
     # https://github.com/yitsushi/totp-cli
