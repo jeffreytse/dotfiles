@@ -4,6 +4,9 @@ source -q "$HOME/.tmux/.tmux.conf.local"
 # start with mouse mode enabled
 set -g mouse on
 
+# allow passthrough of escape sequences of OSC (Operating System Command)
+set -g allow-passthrough on
+
 # force Vi mode
 # really you should export VISUAL or EDITOR environment variable, see manual
 set -g status-keys vi
