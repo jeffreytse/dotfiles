@@ -449,9 +449,25 @@
         name: broot
         locked: true
 
-    - name: Initialize broot
+    - name: All => Initialize broot
       ansible.builtin.shell: |
-        broot --install
+        keyStr = '/broot/launcher/bash/br'
+
+        case $SHELL in
+          *zsh*)
+            rcFile = {{ ansible_env.HOME }}/.zshrc
+          ;;
+          *bash*)
+            rcFile = {{ ansible_env.HOME }}/.bashrc
+          ;;
+          *)
+          exit 0
+          ;;
+        esac
+
+        if grep -q $keyStr $rcFile; then
+          broot --install
+        fi
 
     ###########################
     # superfile
