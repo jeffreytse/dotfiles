@@ -189,6 +189,7 @@
     # https://github.com/soimort/translate-shell
     ###########################
     - name: MacOS => install translate-shell
+      when: ansible_distribution == 'MacOSX'
       ansible.builtin.homebrew:
         name: translate-shell
 
