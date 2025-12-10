@@ -89,9 +89,7 @@
     # Good-lookin' diffs. Actually… nah… The best-lookin' diffs. 🎉
     ###########################
     - name: Install diff-so-fancy
-      community.general.npm:
-        name: diff-so-fancy
-        global: true
+      ansible.builtin.command: pnpm install -g diff-so-fancy
 
     ###########################
     # git-delta
@@ -166,9 +164,7 @@
     # https://github.com/AlDanial/cloc
     ###########################
     - name: All => install cloc
-      community.general.npm:
-        name: cloc
-        global: true
+      ansible.builtin.command: pnpm install -g cloc
 
     ###########################
     # tokei
@@ -193,9 +189,7 @@
     # 📚 Collaborative cheatsheets for console commands
     ###########################
     - name: All => Install tldr
-      community.general.npm:
-        name: tldr
-        global: true
+      ansible.builtin.command: pnpm install -g tldr
 
     ###########################
     # nnn

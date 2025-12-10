@@ -94,9 +94,7 @@
     # http://www.figlet.org/
     ###########################
     - name: Install figlet-cli
-      community.general.npm:
-        name: figlet-cli
-        global: true
+      ansible.builtin.command: pnpm install -g figlet-cli
 
     ###########################
     # glow
@@ -111,18 +109,14 @@
     # live-reload as you edit
     ###########################
     - name: Install markserv
-      community.general.npm:
-        name: markserv
-        global: true
+      ansible.builtin.command: pnpm install -g markserv
 
     ###########################
     # serve
     # Static file serving and directory listing
     ###########################
     - name: Install serve
-      community.general.npm:
-        name: serve
-        global: true
+      ansible.builtin.command: pnpm install -g serve
 
     ###########################
     # vhs
