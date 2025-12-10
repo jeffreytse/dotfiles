@@ -171,6 +171,7 @@
       community.general.snap:
         name: ngrok
         channel: latest/edge
+      ignore_errors: true
 
     ###########################
     # sshuttle

@@ -257,6 +257,7 @@
       community.general.snap:
         name: dbeaver-ce
         channel: latest/edge
+      ignore_errors: true
 
     ###########################
     # postman
@@ -272,6 +273,7 @@
       community.general.snap:
         name: postman
         channel: latest/edge
+      ignore_errors: true
 
     ###########################
     # vscode
@@ -288,6 +290,7 @@
       community.general.snap:
         name: code
         classic: yes
+      ignore_errors: true
 
     ###########################
     # zerotier
