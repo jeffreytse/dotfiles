@@ -19,8 +19,11 @@
       become: true
 
     - name: Change default shell to zsh
-      ansible.builtin.shell:
-        cmd: 'chsh -s /bin/zsh'
+      ansible.builtin.shell: |
+        # Change default shell to zsh
+        if [[ -t 1 ]]; then # Check if the stdout (descriptor is 1) is a tty (interactive terminal)
+          chsh -s $(which zsh)
+        fi
       become: true
 
     - name: Install oh-my-zsh
