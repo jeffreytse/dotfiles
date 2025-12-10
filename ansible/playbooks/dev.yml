@@ -304,8 +304,9 @@
 
     - name: Ubuntu => install zerotier
       when: ansible_distribution == 'Ubuntu'
-      community.general.snap:
-        name: zerotier
+      ansible.builtin.shell: |
+        curl -s https://install.zerotier.com | bash
+      become: true
 
     ###########################
     # sourcetree
