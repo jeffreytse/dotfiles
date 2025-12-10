@@ -10,7 +10,14 @@
         autoremove: yes
       become: true
 
-    - name: Reshim all packages installed by asdf version manager
-      ansible.builtin.command:
-        cmd: 'asdf reshim'
+    - name: All => Approve all builds of pnpm
+      ansible.builtin.command: pnpm approve-builds -g all
+
+    - name: All => Reshim all packages installed by a version manager
+      ansible.builtin.shell: |
+        if command -v asdf &> /dev/null; then
+          asdf reshim
+        elif command -v mise &> /dev/null; then
+          mise reshim
+        fi
 
