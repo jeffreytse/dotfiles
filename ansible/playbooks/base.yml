@@ -154,6 +154,28 @@
       become: true
 
     ###########################
+    # openssh-server
+    # The OpenSSH server daemon
+    ###########################
+    - name: Ubuntu => install openssh-server
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: openssh-server
+        state: latest
+      become: true
+
+    ###########################
+    # openssh-client
+    # The OpenSSH client application
+    ###########################
+    - name: Ubuntu => install openssh-client
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: openssh-client
+        state: latest
+      become: true
+
+    ###########################
     # xquartz
     # An open-source effort to develop a version of the X.Org X Window
     # System that runs on macOS (support xclip on MacOS)
