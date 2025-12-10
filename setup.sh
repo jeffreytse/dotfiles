@@ -88,6 +88,13 @@ while test $# -gt 0; do
     --verbose)
       ANSIBLE_PLAYBOOK_ARGS+=("-v")
       ;;
+    --show-config)
+      ansible-config dump --only-changed
+      exit 0
+      ;;
+    --debug)
+      export ANSIBLE_DEBUG=1
+      ;;
     --*) echo "bad option $1";;
       *) usage;;
   esac
