@@ -154,6 +154,28 @@
       become: true
 
     ###########################
+    # iptables
+    # Administration tool for IPv4 packet filtering and NAT
+    ###########################
+    - name: Ubuntu => install iptables
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: iptables
+        state: latest
+      become: true
+
+    ###########################
+    # ufw
+    # Uncomplicated Firewall, a frontend for iptables
+    ###########################
+    - name: Ubuntu => install ufw
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: ufw
+        state: latest
+      become: true
+
+    ###########################
     # openssh-server
     # The OpenSSH server daemon
     ###########################
