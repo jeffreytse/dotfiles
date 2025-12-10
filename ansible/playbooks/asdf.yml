@@ -16,6 +16,12 @@
       community.general.homebrew:
         name: asdf
 
+    - name: Ubuntu => install asdf
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: asdftool
+      become: true
+
     - name: Link .asdfrc
       ansible.builtin.file:
         src: '{{ ansible_env.PWD }}/../../asdf/asdfrc'
@@ -75,7 +81,9 @@
           - libonig-dev           # Regular expression library (oniguruma) development files
           - libzip-dev            # ZIP file handling library development files
           - libssl-dev            # OpenSSL encryption library development files
+          - libffi-dev            # Foreign Function Interface library development files
           - cmake                 # Cross-platform build system
+          - unzip                 # Utility for unpacking zip files
         state: latest
       become: true
 
