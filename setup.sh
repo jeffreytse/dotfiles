@@ -128,6 +128,12 @@ fi
 
 cd ./ansible || exit 1
 
+# Adjust playbook path if it includes ansible/ prefix, to support playbook paths
+# with ansible/ prefix, e.g., ansible/playbooks/mise.yml
+if [ -f "../$playbook" ]; then
+    playbook="${playbook/ansible\//}"
+fi
+
 # Check if playbook exists
 if [ ! -f "$playbook" ]; then
     echo "Error: playbook file '$playbook' not found!"
