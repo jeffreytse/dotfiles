@@ -24,16 +24,16 @@
         # References:
         # - https://github.com/mobile-shell/mosh/issues/237
         # - https://gist.github.com/chrisdiana/e2e471f4451f5fa16c3b9ef28037c57a
-        alias fw='/usr/libexec/ApplicationFirewall/socketfilterfw'
+        fw='/usr/libexec/ApplicationFirewall/socketfilterfw'
         MOSH_SERVER_PATH=$(which mosh-server)
         # Turn the firewall off
-        fw --setglobalstate off
+        $fw --setglobalstate off
         # Enable the firewall rules
-        fw --add $MOSH_SERVER_PATH
+        $fw --add $MOSH_SERVER_PATH
         # Unblock the app
-        fw --unblockapp $MOSH_SERVER_PATH
+        $fw --unblockapp $MOSH_SERVER_PATH
         # Turn the firewall back on
-        fw --setglobalstate on
+        $fw --setglobalstate on
       become: true
 
     - name: Ubuntu => ensure mosh is allowed in the firewall
