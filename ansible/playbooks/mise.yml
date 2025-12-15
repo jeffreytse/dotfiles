@@ -49,6 +49,7 @@
           - oniguruma             # PHP requires oniguruma to process mbstring and regex
           - libzip                # PHP requires libzip
           - openssl               # PHP requires openssl to process https and security
+          - libxml2               # PHP requires libxml2 to process XML
           - cmake                 # PHP requires cmake to build extensions
         state: present
 
@@ -86,6 +87,7 @@
           # Unable to find the wrapper "https"
           # https://github.com/asdf-community/asdf-php/issues/163
           export MISE_BACKENDS_PHP='vfox:mise-plugins/vfox-php'
+          mise uninstall php@$php_version
           mise plugin remove php
           mise install php@$php_version
         fi
