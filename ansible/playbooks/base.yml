@@ -207,3 +207,4 @@
       community.general.homebrew_cask:
         name: xquartz
         sudo_password: "{{ ansible_become_pass }}"
+      ignore_errors: true
