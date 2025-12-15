@@ -70,7 +70,7 @@
     - name: Create a directory for lombok.jar
       when: not ansible_check_mode
       ansible.builtin.file:
-        path: '/usr/local/share/lombok'
+        path: '{{ ansible_env.HOME }}/.local/share/lombok'
         state: directory
         mode: 0777
         recurse: true
@@ -80,7 +80,7 @@
       when: not ansible_check_mode
       ansible.builtin.get_url:
         url: 'https://projectlombok.org/downloads/lombok-1.18.42.jar'
-        dest: '/usr/local/share/lombok/lombok-1.18.42.jar'
+        dest: '{{ ansible_env.HOME }}/.local/share/lombok/lombok-1.18.42.jar'
         mode: 0775
 
     - name: Install neovim `python3` provider (Run :checkhealth provider)
