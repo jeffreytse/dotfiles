@@ -50,6 +50,8 @@
           - libzip                # PHP requires libzip
           - openssl               # PHP requires openssl to process https and security
           - libxml2               # PHP requires libxml2 to process XML
+          - sqlite3               # PHP requires sqlite3 to process SQLite databases
+          - curl                  # PHP requires libcurl to process HTTP requests
           - cmake                 # PHP requires cmake to build extensions
         state: present
 
@@ -82,12 +84,17 @@
       when: ansible_distribution == 'MacOSX'
       ansible.builtin.shell: |
         cd {{ mise_home }}
+        # Install PHP if specified in the config
         php_version=$(mise config get tools.php)
         if [[ -n $php_version ]]; then
-          # Unable to find the wrapper "https"
-          # https://github.com/asdf-community/asdf-php/issues/163
-          export MISE_BACKENDS_PHP='vfox:mise-plugins/vfox-php'
-          mise plugin remove php
+          # Ensure pkg-config can find the required libraries
+          # This is necessary for PHP to compile with the required extensions
+          # such as zlib, sqlite3, and curl
+          pkgs=("zlib" "sqlite3" "curl")
+          for pkg in "${pkgs[@]}"; do
+            export PKG_CONFIG_PATH="$(brew --prefix $pkg)/lib/pkgconfig:$PKG_CONFIG_PATH"
+          done
+
           mise install --force php@$php_version
         fi
 
