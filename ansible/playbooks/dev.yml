@@ -443,6 +443,16 @@
         locked: true
 
     ###########################
+    # procs
+    # A modern replacement for ps written in Rust
+    # https://github.com/dalance/procs
+    # #########################
+    - name: All => install procs
+      community.general.cargo:
+        name: procs
+        locked: true
+
+    ###########################
     # dive
     # A tool for exploring each layer in a docker image
     # https://github.com/wagoodman/dive
