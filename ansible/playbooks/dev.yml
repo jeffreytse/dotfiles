@@ -433,6 +433,16 @@
       ansible.builtin.shell: go install github.com/mikefarah/yq/v4@latest
 
     ###########################
+    # dust
+    # A more intuitive version of du in rust
+    # https://github.com/bootandy/dust
+    # #########################
+    - name: All => install dust
+      community.general.cargo:
+        name: du-dust
+        locked: true
+
+    ###########################
     # dive
     # A tool for exploring each layer in a docker image
     # https://github.com/wagoodman/dive
