@@ -74,7 +74,6 @@
         state: directory
         mode: 0777
         recurse: true
-      become: true
 
     - name: Download the latest lombok.jar (https://projectlombok.org/)
       when: not ansible_check_mode
@@ -90,3 +89,13 @@
     - name: Install autopep8 (support `autopep8` command for python formatter)
       ansible.builtin.shell: |
         pip install autopep8
+
+    - name: Fix module 'tslib' issue in coc-import-cost
+      ansible.builtin.shell: |
+        # UnhandledRejection: Cannot find module 'tslib'
+        # Refer to https://github.com/wix/import-cost/issues/281
+        pluginPath={{ ansible_env.HOME }}/.config/coc/extensions/node_modules/coc-import-cost
+        if [ -d "$pluginPath" ]; then
+          cd "$pluginPath"
+          npm install
+        fi
