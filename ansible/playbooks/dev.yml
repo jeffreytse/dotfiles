@@ -409,7 +409,7 @@
     # sd
     # Intuitive find & replace CLI (sed alternative)
     # https://github.com/chmln/sd
-    # #########################
+    ###########################
     - name: All => install sd
       community.general.cargo:
         name: sd
@@ -419,7 +419,7 @@
     # fx
     # Terminal JSON viewer & processor
     # https://github.com/antonmedv/fx
-    # #########################
+    ###########################
     - name: All => install fx
       ansible.builtin.shell: go install github.com/antonmedv/fx@latest
 
@@ -428,7 +428,7 @@
     # A portable command-line YAML, JSON, XML, CSV, TOML and properties
     # processor
     # https://github.com/mikefarah/yq
-    # #########################
+    ###########################
     - name: All => install yq
       ansible.builtin.shell: go install github.com/mikefarah/yq/v4@latest
 
@@ -436,7 +436,7 @@
     # dust
     # A more intuitive version of du in rust
     # https://github.com/bootandy/dust
-    # #########################
+    ###########################
     - name: All => install dust
       community.general.cargo:
         name: du-dust
@@ -446,10 +446,20 @@
     # procs
     # A modern replacement for ps written in Rust
     # https://github.com/dalance/procs
-    # #########################
+    ###########################
     - name: All => install procs
       community.general.cargo:
         name: procs
+        locked: true
+
+    ###########################
+    # bottom
+    # Yet another cross-platform graphical process/system monitor.
+    # https://github.com/ClementTsang/bottom
+    ###########################
+    - name: All => install bottom
+      community.general.cargo:
+        name: bottom
         locked: true
 
     ###########################
