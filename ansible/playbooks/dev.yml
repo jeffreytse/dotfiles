@@ -429,7 +429,7 @@
     # processor
     # https://github.com/mikefarah/yq
     # #########################
-    - name: All => install fx
+    - name: All => install yq
       ansible.builtin.shell: go install github.com/mikefarah/yq/v4@latest
 
     ###########################
