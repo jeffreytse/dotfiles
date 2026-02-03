@@ -31,6 +31,6 @@
     - name: MacOS => Set screenshot location to ~/Photos/Screenshots
       when: ansible_distribution == 'MacOSX'
       ansible.builtin.shell: |
-        mkdir -p "${HOME}/Photos/Screenshots"
-        defaults write com.apple.screencapture location -string "${HOME}/Photos/Screenshots"
+        mkdir -p "${HOME}/Pictures/Screenshots"
+        defaults write com.apple.screencapture location -string "${HOME}/Pictures/Screenshots"
         killall SystemUIServer
