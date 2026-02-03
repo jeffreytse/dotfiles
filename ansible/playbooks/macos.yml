@@ -1,0 +1,36 @@
+---
+- name: Custom macOS Settings
+  hosts: localhost
+
+  tasks:
+    - name: MacOS => Disable creation of .DS_Store files on network volumes
+      when: ansible_distribution == 'MacOSX'
+      ansible.builtin.shell: |
+        defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool TRUE
+
+    - name: MacOS => Set fast key repeat rate
+      when: ansible_distribution == 'MacOSX'
+      ansible.builtin.shell: |
+        defaults write NSGlobalDomain KeyRepeat -int 1
+
+    - name: MacOS => Set a shorter delay until key repeat
+      when: ansible_distribution == 'MacOSX'
+      ansible.builtin.shell: |
+        defaults write NSGlobalDomain InitialKeyRepeat -int 15
+
+    - name: MacOS => Show all filename extensions in Finder
+      when: ansible_distribution == 'MacOSX'
+      ansible.builtin.shell: |
+        defaults write NSGlobalDomain AppleShowAllExtensions -bool TRUE
+
+    - name: MacOS => Show hidden files in Finder
+      when: ansible_distribution == 'MacOSX'
+      ansible.builtin.shell: |
+        defaults write com.apple.finder AppleShowAllFiles -bool TRUE
+
+    - name: MacOS => Set screenshot location to ~/Photos/Screenshots
+      when: ansible_distribution == 'MacOSX'
+      ansible.builtin.shell: |
+        mkdir -p "${HOME}/Photos/Screenshots"
+        defaults write com.apple.screencapture location -string "${HOME}/Photos/Screenshots"
+        killall SystemUIServer

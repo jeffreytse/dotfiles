@@ -68,5 +68,8 @@
 - import_playbook: playbooks/misc.yml
   tags: [misc]
 
+- import_playbook: playbooks/macos.yml
+  tags: [macos]
+
 - import_playbook: playbooks/postflight.yml
   tags: [always]
