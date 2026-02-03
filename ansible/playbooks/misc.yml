@@ -3,6 +3,17 @@
 
   tasks:
     ###########################
+    # sshfs
+    # Filesystem client based on SSH File Transfer Protocol
+    ###########################
+    - name: Ubuntu => install sshfs
+      when: ansible_distribution == 'Ubuntu'
+      apt:
+        name: sshfs
+        state: latest
+      become: true
+
+    ###########################
     # ffmpeg
     # A free tool for manipulating media files
     ###########################
