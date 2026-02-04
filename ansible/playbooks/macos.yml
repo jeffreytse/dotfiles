@@ -28,7 +28,7 @@
       ansible.builtin.shell: |
         defaults write com.apple.finder AppleShowAllFiles -bool TRUE
 
-    - name: MacOS => Set screenshot location to ~/Photos/Screenshots
+    - name: MacOS => Set screenshot location to ~/Pictures/Screenshots
       when: ansible_distribution == 'MacOSX'
       ansible.builtin.shell: |
         mkdir -p "${HOME}/Pictures/Screenshots"
