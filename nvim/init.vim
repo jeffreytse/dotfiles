@@ -237,7 +237,6 @@ Plug 'dhruvasagar/vim-table-mode'
 " UML
 Plug 'aklt/plantuml-syntax'
 Plug 'tyru/open-browser.vim'
-Plug 'weirongxu/plantuml-previewer.vim'
 
 " --- Git Support ---
 "Plug 'cohama/agit.vim'
@@ -363,6 +362,8 @@ let g:coc_global_extensions = [
       \ 'coc-calc',
       \ 'coc-dictionary',
       \ 'coc-explorer',
+      \ 'coc-webview',
+      \ 'coc-markdown-preview-enhanced',
       \ 'coc-cssmodules',
       \ 'coc-pyright',
       \ 'coc-spell-checker',
