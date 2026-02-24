@@ -33,6 +33,7 @@ spring-boot = "3.3.3"
 bun = "1.2.8"
 uv = "0.8.12"
 usage = "latest"
+watchexec = "latest"
 
 [settings]
 experimental = true
